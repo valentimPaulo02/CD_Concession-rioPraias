@@ -10,8 +10,7 @@ public class ClientRMI {
     	
       Registry registry = LocateRegistry.getRegistry();
     	
-      String addServerURL = "rmi://" + "localhost" + "/AddServer";
-      ServerInterface addServerIntf = (ServerInterface)registry.lookup(addServerURL);
+      ServerInterface addServerIntf = (ServerInterface)registry.lookup("AddServer");
       System.out.println("The first number is: " + 1);
       double d1 = 1;
       System.out.println("The second number is: " + 2);

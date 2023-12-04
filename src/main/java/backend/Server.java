@@ -12,7 +12,7 @@ public class Server {
     	
       System.out.println("started");
       ServerImplementation addServerImpl = new ServerImplementation();
-      Naming.rebind("AddServer", addServerImpl);
+      registry.rebind("AddServer", addServerImpl);
       System.out.println("working");
 
     }
