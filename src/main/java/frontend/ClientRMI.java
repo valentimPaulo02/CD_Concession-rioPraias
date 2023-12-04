@@ -2,7 +2,7 @@ package frontend;
 import backend.*;
 import java.rmi.*;
 
-public class Client {
+public class ClientRMI {
   public static void main(String args[]) {
     try {
       String addServerURL = "rmi://" + "localhost" + "/AddServer";
