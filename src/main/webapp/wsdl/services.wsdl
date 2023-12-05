@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ServicesService" targetNamespace="http://Rest.frontend/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://Rest.frontend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://Rest.frontend/" schemaLocation="services_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="GetMessaegContentResponse">
+    <wsdl:part name="parameters" element="tns:GetMessaegContentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetMessaegContent">
+    <wsdl:part name="parameters" element="tns:GetMessaegContent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Services">
+    <wsdl:operation name="GetMessaegContent">
+      <wsdl:input name="GetMessaegContent" message="tns:GetMessaegContent">
+    </wsdl:input>
+      <wsdl:output name="GetMessaegContentResponse" message="tns:GetMessaegContentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicesServiceSoapBinding" type="tns:Services">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetMessaegContent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetMessaegContent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetMessaegContentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicesService">
+    <wsdl:port name="ServicesPort" binding="tns:ServicesServiceSoapBinding">
+      <soap:address location="http://localhost:8080/CD_Project"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

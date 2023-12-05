@@ -1,0 +1,25 @@
+<xs:schema xmlns:tns="http://Rest.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Rest.frontend/" version="1.0">
+
+  <xs:element name="GetMessaegContent" type="tns:GetMessaegContent"/>
+
+  <xs:element name="GetMessaegContentResponse" type="tns:GetMessaegContentResponse"/>
+
+  <xs:element name="Message" type="tns:message"/>
+
+  <xs:complexType name="GetMessaegContent">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="GetMessaegContentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:message"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="messageContent" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
