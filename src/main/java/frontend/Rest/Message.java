@@ -8,7 +8,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Message {
 	
 	private String content;
+	private String operacion;
 	
+	
+	
+	public String getOperation() {
+		return operacion;
+	}
 	
 	public String getMessageContent()
 	{
