@@ -238,15 +238,31 @@ public class Interface {
     
     /////////////////////////////////////////////////////////////////////////////////////
 
+  //A IMPLEMENTAR ALGO MAIS COMPLEXO DEPOIS
 
     private static void cancelReservedUmbrella() {
-        //umbrella reservation cancellation logic
-        System.out.println("Canceling umbrella reservation...");
+        System.out.println("Enter the ID of the umbrella to be cancelled:");
+        String umbrellaID = scanner.nextLine();
+
+        System.out.println("Umbrella reservation " + umbrellaID + " canceled successfully!");
     }
 
     private static void listAvailableUmbrellas() {
-        //logic for listing available umbrellas
-        System.out.println("Listing available umbrellas...");
+        System.out.println("List available umbrellas...");
+
+  
+        System.out.println("Beach A:");
+        System.out.println("Available for 2 people: 7 umbrellas");
+        System.out.println("Available for 3 people: 4 umbrellas");
+        System.out.println("Available for 4 people: 3 umbrellas");
+
+        System.out.println("Beach B:");
+        System.out.println("Available for 2 people: 5 umbrellas");
+        System.out.println("Available for 3 people: 2 umbrellas");
+        System.out.println("Available for 4 people: 1 umbrella");
+
+        System.out.println("Beach C:");
+        System.out.println("Available for 2 people: 8 umbrellas");
     }
 }
 
