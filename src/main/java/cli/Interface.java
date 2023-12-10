@@ -1,99 +1,93 @@
 package cli;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Interface {
-
     private static Scanner scanner = new Scanner(System.in);
     private static boolean loggedIn = false;
-    private static ArrayList<String> usernames = new ArrayList<>();
-    private static ArrayList<String> passwords = new ArrayList<>();
+    private static HashMap<String, String> users = new HashMap<>();
+    private static HashMap<String, Beach> beaches = new HashMap<>();
+    private static HashMap<String, ArrayList<ArrayList<String>>> userUmbrellaReservations = new HashMap<>();
 
     public static void main(String[] args) {
-    	//username and password test
-    	usernames.add("teste");
-    	passwords.add("teste");
-    	
-        while (true) {
-        	displayMenuMain();
-            int option = scanner.nextInt();
-            scanner.nextLine(); // clean buffer
+        // Add a test user
+        users.put("test", "test");
 
-            if (!loggedIn) {
-            	processOptionNotAuthenticated(option);
-            } else {
-            	processOptionAuthenticated(option);
+        // Add beach information
+        initializeBeaches();
+
+        while (true) {
+            displayWelcomeScreen();
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Clear the buffer
+
+            switch (option) {
+                case 1:
+                    if (!loggedIn) {
+                        login();
+                    } else {
+                        System.out.println("You are already logged in!");
+                    }
+                    break;
+                case 2:
+                    register();
+                    break;
+                case 0:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again!");
+            }
+
+            while (loggedIn) {
+                displayHomeScreen();
+                option = scanner.nextInt();
+                scanner.nextLine(); // Clear the buffer
+
+                switch (option) {
+                    case 1:
+                        reserveUmbrella();
+                        break;
+                    case 2:
+                        cancelReservedUmbrella();
+                        break;
+                    case 0:
+                        System.out.println("Exiting...");
+                        loggedIn = false;
+                        break;
+                    default:
+                        System.out.println("Invalid option. Please try again!");
+                }
             }
         }
     }
-
-    private static void displayMenuMain() {
-        if (!loggedIn) {
-            System.out.println("Bem-vindo! Por favor, escolha uma opção:");
-            System.out.println("1. Login");
-            System.out.println("2. Registrar novo utilizador");
-            System.out.println("0. Sair");
-        } else {
-            System.out.println("Escolha uma operação:");
-            System.out.println("1. Reservar sombrinha");
-            System.out.println("2. Cancelar reserva de sombrinha");
-            System.out.println("3. Listar as sombrinhas disponíveis");
-            System.out.println("0. Sair");
-        }
+    
+    private static void displayWelcomeScreen() {
+        System.out.println("Welcome! Please choose an option:");
+        System.out.println("1. Login");
+        System.out.println("2. Register");
+        System.out.println("0. Exit");
     }
 
-    private static void processOptionNotAuthenticated(int option) {
-        switch (option) {
-            case 1:
-                login();
-                break;
-            case 2:
-                register();
-                break;
-            case 0:
-                System.out.println("Leaving...");
-                scanner.close();
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid Option. Try again!");
-        }
-    }
-
-    private static void processOptionAuthenticated(int option) {
-        switch (option) {
-            case 1:
-                bookUmbrella();
-                break;
-            case 2:
-                cancelReservedUmbrella();
-                break;
-            case 3:
-                listAvailableUmbrellas();
-                break;
-            case 0:
-                System.out.println("Leaving...");
-                scanner.close();
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid Option. Try again!");
-        }
+    private static void displayHomeScreen() {
+        System.out.println("Home Screen - Choose an option:");
+        System.out.println("1. Reserve Umbrella");
+        System.out.println("2. Cancel Reserved Umbrella");
+        System.out.println("0. Logout");
     }
 
     private static void login() {
         System.out.println("Enter username:");
         String username = scanner.nextLine();
-        System.out.println("Type the password:");
+        System.out.println("Enter password:");
         String password = scanner.nextLine();
 
-        int userIndex = usernames.indexOf(username);
-        if (userIndex != -1 && passwords.get(userIndex).equals(password)) {
+        if (users.containsKey(username) && users.get(username).equals(password)) {
             loggedIn = true;
             System.out.println("Login successful!");
         } else {
-            System.out.println("Invalid credentials. Try again!");
+            System.out.println("Invalid credentials. Please try again!");
         }
     }
 
@@ -103,166 +97,266 @@ public class Interface {
         System.out.println("Enter a new password:");
         String newPassword = scanner.nextLine();
 
-        //checks if the new user already exists
-        if (usernames.contains(newUsername)) {
-            System.out.println("Username already exists. Choose another.");
+        if (users.containsKey(newUsername)) {
+            System.out.println("Username already exists. Please choose another one.");
         } else {
-            //adding a new username and password pair
-            usernames.add(newUsername);
-            passwords.add(newPassword);
-            System.out.println("User registered successfully");
+            users.put(newUsername, newPassword);
+            loggedIn = true;
+            System.out.println("User registered successfully and logged in!");
         }
     }
     
-    /////////////////////////////////////////////////////////////////////////////////////
+    private static String getCurrentUser() {
+        return "test";
+    }
 
-    private static void bookUmbrella() {
-        System.out.println("Choose the beach (A, B or C):");
-        String beach = scanner.nextLine();
-        System.out.println("Choose the number of people (2, 3 or 4):");
+    private static void initializeBeaches() {
+        // Beach A
+        HashMap<String, Integer> beachAUmbrellas = new HashMap<>();
+        for (int i = 1; i <= 20; i++) {
+            if (i <= 10) {
+                beachAUmbrellas.put("A" + i, 2); // 2-person umbrellas A1-A10
+            } else if (i <= 15 && i>10) {
+                beachAUmbrellas.put("A" + i, 3); // 3-person umbrellas A11-A15
+            } else {
+                beachAUmbrellas.put("A" + i, 4); // 4-person umbrellas A16-A20
+            }
+        }
+        Beach beachA = new Beach("A", beachAUmbrellas);
+        beaches.put("A", beachA);
+
+        // Beach B
+        HashMap<String, Integer> beachBUmbrellas = new HashMap<>();
+        for (int i = 1; i <= 11; i++) {
+            if (i <= 5) {
+                beachBUmbrellas.put("B" + i, 2); // 2-person umbrellas B1-B5
+            } else if (i <= 10 && i>5) {
+                beachBUmbrellas.put("B" + i, 3); // 3-person umbrellas B6-B10
+            } else {
+                beachBUmbrellas.put("B" + i, 4); // 4-person umbrella B11
+            }
+        }
+        Beach beachB = new Beach("B", beachBUmbrellas);
+        beaches.put("B", beachB);
+
+        // Beach C
+        HashMap<String, Integer> beachCUmbrellas = new HashMap<>();
+        for (int i = 1; i <= 10; i++) {
+            beachCUmbrellas.put("C" + i, 2); // 2-person umbrellas C1-C10
+        }
+        Beach beachC = new Beach("C", beachCUmbrellas);
+        beaches.put("C", beachC);
+    }
+
+    
+    private static void reserveUmbrella() {
+        System.out.println("Enter the beach ID (A, B, or C):");
+        String beach = scanner.nextLine().toUpperCase();
+
+        Beach selectedBeach = beaches.get(beach);
+        if (selectedBeach == null) {
+            System.out.println("Invalid beach!");
+            return;
+        }
+
+        System.out.println("Enter date (DD-MM-YYYY):");
+        String date = scanner.nextLine();
+        System.out.println("Enter time (HH:MM):");
+        String time = scanner.nextLine();
+        System.out.println("Enter number of people:");
         int numberOfPeople = scanner.nextInt();
-        scanner.nextLine(); //clean buffer
+        scanner.nextLine(); // Clear the buffer
 
-        //check the chosen beach and availability of umbrellas
-        switch (beach.toUpperCase()) {
-            case "A":
-                if (numberOfPeople == 2) {
-                    bookUmbrellaForTwoAtBeachA();
-                } else if (numberOfPeople == 3) {
-                    bookUmbrellaForThreeAtBeachA();
-                } else if (numberOfPeople == 4) {
-                    bookUmbrellaForFourAtBeachA();
-                } else {
-                    System.out.println("Invalid number of people for beach A!");
-                }
+        listAvailableUmbrellas(beach, date, time, numberOfPeople);
+
+        HashMap<String, Integer> umbrellasForBeach = new HashMap<>(selectedBeach.getUmbrellas());
+
+        if (umbrellasForBeach.isEmpty()) {
+            System.out.println("No umbrellas available for this beach!");
+            return;
+        }
+
+        ArrayList<String> selectedUmbrellas = new ArrayList<>();
+        int remainingCapacity = numberOfPeople;
+
+        while (remainingCapacity > 0) {
+            System.out.println("Enter the Umbrella ID to reserve (0 to finish):");
+            String selectedId = scanner.nextLine();
+
+            if (selectedId.equals("0")) {
                 break;
-            case "B":
-                if (numberOfPeople == 2) {
-                    bookUmbrellaForTwoAtBeachB();
-                } else if (numberOfPeople == 3) {
-                    bookUmbrellaForThreeAtBeachB();
-                } else if (numberOfPeople == 4) {
-                    bookUmbrellaForFourAtBeachB();
+            }
+
+            if (umbrellasForBeach.containsKey(selectedId)) {
+                int capacity = umbrellasForBeach.get(selectedId);
+
+                if (capacity >= remainingCapacity) {
+                    selectedUmbrellas.add(selectedId);
+                    umbrellasForBeach.put(selectedId, capacity - remainingCapacity);
+                    remainingCapacity = 0;
                 } else {
-                    System.out.println("Invalid number of people for beach B!");
+                    selectedUmbrellas.add(selectedId);
+                    remainingCapacity -= capacity;
+                    umbrellasForBeach.remove(selectedId);
                 }
-                break;
-            case "C":
-                if (numberOfPeople == 2) {
-                    bookUmbrellaForTwoAtBeachC();
-                } else {
-                    System.out.println("Invalid number of people for beach C!");
+            } else {
+                System.out.println("Invalid Umbrella ID. Please try again!");
+            }
+        }
+
+        if (remainingCapacity == 0) {
+            ArrayList<ArrayList<String>> userRes = userUmbrellaReservations.get(getCurrentUser());
+            if (userRes == null) {
+                userRes = new ArrayList<>();
+            }
+
+
+            selectedBeach.setUmbrellas(umbrellasForBeach);
+
+           
+            ArrayList<ArrayList<String>> updatedReservations = new ArrayList<>();
+            for (ArrayList<String> res : userRes) {
+                if (!(res.get(0).equals(beach) && res.get(1).equals("0") && res.get(2).equals("0"))) {
+                    updatedReservations.add(res);
                 }
-                break;
-            default:
-                System.out.println("Invalid beach!");
-        }
-    }
+            }
+            userUmbrellaReservations.put(getCurrentUser(), updatedReservations);
 
-    private static void bookUmbrellaForTwoAtBeachA() {
-        int availableUmbrellasForTwoAtBeachA = 10; 
-        if (availableUmbrellasForTwoAtBeachA > 0) {
-            availableUmbrellasForTwoAtBeachA--;
-            System.out.println("Booking umbrella in A for 2 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-            System.out.println("There are no umbrellas available for 2 people on beach A.");
-        }
-    }
 
-    // Funções similares para os outros casos na praia A (3 e 4 pessoas)
-    private static void bookUmbrellaForThreeAtBeachA() {
-        int availableUmbrellasForThreeAtBeachA = 5;
-        if (availableUmbrellasForThreeAtBeachA > 0) {
-        	availableUmbrellasForThreeAtBeachA--;
-            System.out.println("Booking umbrella in A for 3 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-        	System.out.println("There are no umbrellas available for 3 people on beach A.");
-        }
-    }
+            ArrayList<String> reservationDetails = new ArrayList<>(Arrays.asList(beach, date, time, String.valueOf(numberOfPeople), String.join(",", selectedUmbrellas)));
+            userRes.add(reservationDetails);
+            userUmbrellaReservations.put(getCurrentUser(), userRes);
 
-    private static void bookUmbrellaForFourAtBeachA() {
-        int availableUmbrellasForFourAtBeachA = 4;
-        if (availableUmbrellasForFourAtBeachA > 0) {
-        	availableUmbrellasForFourAtBeachA--;
-            System.out.println("Booking umbrella in A for 4 people...");
-            System.out.println("Reservation made successfully!");
+            System.out.println("Umbrella(s) reserved successfully!");
         } else {
-        	System.out.println("There are no umbrellas available for 4 people on beach A.");
+            System.out.println("Insufficient umbrella capacity to accommodate all people.");
         }
     }
-    private static void bookUmbrellaForTwoAtBeachB() {
-        int availableUmbrellasForTwoAtBeachB = 5;
-        if (availableUmbrellasForTwoAtBeachB > 0) {
-        	availableUmbrellasForTwoAtBeachB--;
-            System.out.println("Booking an umbrella in B for 2 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-        	System.out.println("There are no umbrellas available for 2 people on beach B.");
-        }
-    }
-
-    private static void bookUmbrellaForThreeAtBeachB() {
-        int availableUmbrellasForThreeAtBeachB = 4;
-        if (availableUmbrellasForThreeAtBeachB > 0) {
-        	availableUmbrellasForThreeAtBeachB--;
-            System.out.println("Booking an umbrella in B for 3 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-        	System.out.println("There are no umbrellas available for 3 people on beach B.");
-        }
-    }
-
-    private static void bookUmbrellaForFourAtBeachB() {
-        int availableUmbrellasForFourAtBeachB = 1;
-        if (availableUmbrellasForFourAtBeachB > 0) {
-        	availableUmbrellasForFourAtBeachB--;
-            System.out.println("Booking an umbrella in B for 4 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-        	System.out.println("There are no umbrellas available for 4 people on beach B.");
-        }
-    }
-
-    private static void bookUmbrellaForTwoAtBeachC() {
-        int availableUmbrellasForTwoAtBeachC = 10;
-        if (availableUmbrellasForTwoAtBeachC > 0) {
-        	availableUmbrellasForTwoAtBeachC--;
-            System.out.println("Booking an umbrella in C for 2 people...");
-            System.out.println("Reservation made successfully!");
-        } else {
-        	System.out.println("There are no umbrellas available for 2 people on beach C.");
-        }
-    }
-    
-    /////////////////////////////////////////////////////////////////////////////////////
-
-  //A IMPLEMENTAR ALGO MAIS COMPLEXO DEPOIS
 
     private static void cancelReservedUmbrella() {
-        System.out.println("Enter the ID of the umbrella to be cancelled:");
+        String currentUser = getCurrentUser();
+        ArrayList<ArrayList<String>> userRes = userUmbrellaReservations.get(currentUser);
+        boolean foundReservation = false;
+
+        System.out.println("User: " + currentUser + " - Reserved Umbrellas:");
+
+        for (ArrayList<String> res : userRes) {
+            System.out.println(res);
+            String date = res.get(1);
+            String time = res.get(2);
+
+            if (!date.equals("0") && !time.equals("0")) {
+                foundReservation = true;
+                break;
+            }
+        }
+
+        if (!foundReservation) {
+            System.out.println("You have no reserved umbrellas.");
+            return;
+        }
+
+        System.out.println("Your reserved umbrellas:");
+
+        for (ArrayList<String> res : userRes) {
+            String beach = res.get(0);
+            String date = res.get(1);
+            String time = res.get(2);
+
+            if (!date.equals("0") && !time.equals("0")) {
+                System.out.println("Beach: " + beach + " - Date: " + date + " - Time: " + time);
+            }
+        }
+
+        System.out.println("Enter the Umbrella ID to cancel reservation:");
         String umbrellaID = scanner.nextLine();
 
-        System.out.println("Umbrella reservation " + umbrellaID + " canceled successfully!");
+        boolean found = false;
+
+        for (ArrayList<String> res : userRes) {
+            if (res.size() >= 5 && res.contains(umbrellaID)) {
+                String beach = res.get(0);
+
+                Beach selectedBeach = beaches.get(beach);
+
+                if (selectedBeach != null) {
+                    HashMap<String, Integer> umbrellasForBeach = new HashMap<>(selectedBeach.getUmbrellas());
+                    String[] reservedUmbrellas = res.get(res.size() - 1).split(",");
+
+                    for (String umbrella : reservedUmbrellas) {
+                        String[] parts = umbrella.split(":");
+                        if (parts.length == 2 && parts[0].equals(umbrellaID)) {
+                            int capacity = Integer.parseInt(parts[1]);
+                            int currentCapacity = umbrellasForBeach.getOrDefault(umbrellaID, 0);
+                            umbrellasForBeach.put(umbrellaID, currentCapacity + capacity);
+                        }
+                    }
+
+                    selectedBeach.setUmbrellas(umbrellasForBeach);
+                    res.set(1, "0"); // Set date to "0" to mark the reservation as canceled
+                    res.set(2, "0"); // Set time to "0" to mark the reservation as canceled
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            userUmbrellaReservations.put(currentUser, userRes);
+            System.out.println("Umbrella reservation " + umbrellaID + " canceled successfully!");
+        } else {
+            System.out.println("Invalid Umbrella ID or no reservation found!");
+        }
+    }
+    
+    private static void listAvailableUmbrellas(String beach, String date, String time, int numberOfPeople) {
+        Beach selectedBeach = beaches.get(beach);
+
+        if (selectedBeach == null) {
+            System.out.println("Invalid beach!");
+            return;
+        }
+
+        // Logic to list available umbrellas
+        HashMap<String, Integer> umbrellasForBeach = selectedBeach.getUmbrellas();
+
+        if (umbrellasForBeach.isEmpty()) {
+            System.out.println("No umbrellas available for this beach!");
+            return;
+        }
+
+        System.out.println("Available umbrellas for " + beach + " at " + date + ", " + time + ":");
+
+        for (Map.Entry<String, Integer> entry : umbrellasForBeach.entrySet()) {
+            String umbrellaId = entry.getKey();
+            int capacity = entry.getValue();
+
+            if (capacity >= numberOfPeople) {
+                System.out.println("Umbrella ID: " + umbrellaId + " - Capacity: " + capacity);
+            }
+        }
     }
 
-    private static void listAvailableUmbrellas() {
-        System.out.println("List available umbrellas...");
 
-  
-        System.out.println("Beach A:");
-        System.out.println("Available for 2 people: 7 umbrellas");
-        System.out.println("Available for 3 people: 4 umbrellas");
-        System.out.println("Available for 4 people: 3 umbrellas");
+    private static class Beach {
+        private String beachId;
+        private HashMap<String, Integer> umbrellas;
 
-        System.out.println("Beach B:");
-        System.out.println("Available for 2 people: 5 umbrellas");
-        System.out.println("Available for 3 people: 2 umbrellas");
-        System.out.println("Available for 4 people: 1 umbrella");
+        public Beach(String beachId, HashMap<String, Integer> umbrellas) {
+            this.beachId = beachId;
+            this.umbrellas = umbrellas;
+        }
 
-        System.out.println("Beach C:");
-        System.out.println("Available for 2 people: 8 umbrellas");
+        public String getBeachId() {
+            return beachId;
+        }
+
+        public HashMap<String, Integer> getUmbrellas() {
+            return umbrellas;
+        }
+        
+        public void setUmbrellas(HashMap<String, Integer> updatedUmbrellas) {
+            this.umbrellas = updatedUmbrellas;
+        }
     }
 }
-
