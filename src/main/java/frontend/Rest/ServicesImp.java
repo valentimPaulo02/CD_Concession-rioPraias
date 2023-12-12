@@ -13,13 +13,16 @@ import javax.ws.rs.Produces;
 
 public class ServicesImp implements Services {
 
+	
+	
+	
 	@GET
 	@Path("/GetSombrinhas")
 	public Message GetSombrinhas()
 	{
 		Message message = new Message();
-		message.setMessageContent("o Paulinho e gay");
-		System.out.print(message.getMessageContent());
+		message.setContent("o Paulinho e gay");
+		System.out.print(message.getContent());
 		return message;
 	}
 	
@@ -38,25 +41,53 @@ public class ServicesImp implements Services {
 	 * 
 	 * */
 	
+	
+	
 	@POST
 	@Path("/SendData")
-	public String SendData(Message message)
+	public Message SendData(Message message)
 	{
-		switch(message.getOperation()) 
-		{
-		case "ReservarSombrinha":
-			return "{\"result\":\"ok\"}";
-		case "Cancelarsombrinha":
-			return "{\"result\":\"ok\"}";
-		case "Listarsombrinhas":
-			return "{\"result\":\"ok\"}";
-		case "RegistarUtilizador":
-			return "{\"result\":\"ok\"}";
-		default:
-			return "{\"result\":\"e\"}";
+		
+		System.out.println("Chegou aqui!!!!!!!");
+	
+		
+		
+		
+		if(isElementPresent(Operation.class, message.getOperation().toString())) {
 			
+			System.out.println("content da mensagem |content|	->   " + message.getContent());
+			System.out.println("content da mensagem |operation|	->   " + message.getOperation());
+			message.setOperation("ok");
 		}
 		
+		
+		message.setContent("unknown Opearation -> " + message.getOperation());
+		message.setOperation("ERROR");
+		return message;
 	}
+	
+	
+	
+    // Method to check if an element is present in the enum
+    private static <T extends Enum<T>> boolean isElementPresent(Class<T> enumClass, String targetElement) {
+        try {
+            // Attempt to retrieve the enum constant with the specified name
+            Enum.valueOf(enumClass, targetElement);
+            return true;
+        } catch (IllegalArgumentException e) {
+            // The specified name does not match any enum constant
+            return false;
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

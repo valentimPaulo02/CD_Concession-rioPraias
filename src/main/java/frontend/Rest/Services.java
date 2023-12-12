@@ -6,6 +6,6 @@ import javax.jws.WebService;
 public interface Services {
 	
 	Message GetSombrinhas();
-	String SendData(Message message);
+	Message SendData(Message message);
 	
 }

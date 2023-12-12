@@ -1,0 +1,14 @@
+package frontend.Rest;
+
+public enum Operation {
+	RESERVAR_SOMBRINHA,
+	CANCELAR_SOMBRINHA,
+	LISTAR_SOMBRINHAS,
+	REGISTAR_UTILIZADOR
+
+
+
+
+
+
+}
