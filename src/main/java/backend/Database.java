@@ -1,15 +1,22 @@
 package backend;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
 	
 	private Connection connection;
     private String jdbcUrl = "jdbc:mysql://aws.connect.psdb.cloud/cd_project?sslMode=VERIFY_IDENTITY";
-    private String username = "8fcpk2l571ttfuetcc7z";
-    private String password = "pscale_pw_oJpbrXezCuqRs6iPVTNSN7HX3eJzFA5tupFkdOjBE5m";
+    private String username = "sjjnfomduzbwtemfx5ne";
+    private String password = "";
     
-    public Database() throws SQLException {
+    public Database() {
+    	
+    }
+    
+    public void connect() throws SQLException {
     	try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -24,20 +31,35 @@ public class Database {
         }
     }
 
-    public ResultSet executeQueryWithData(String query, Map<Integer, Object> parameters) throws SQLException {
+    public List<Map<String, Object>> executeQueryWithData(String query, Map<Integer, Object> parameters) throws SQLException {
         if (connection == null || connection.isClosed()) {
             throw new SQLException("Database connection is not established.");
         }
+        
+        List<Map<String, Object>> resultList = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            // Set parameters for the prepared statement
+          
             for (Map.Entry<Integer, Object> entry : parameters.entrySet()) {
                 preparedStatement.setObject(entry.getKey(), entry.getValue());
             }
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+         
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
 
-            // Execute the query
-            return preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Map<String, Object> row = new HashMap<>();
+                    for (int i = 1; i <= columnCount; i++) {
+                        String columnName = metaData.getColumnName(i);
+                        Object value = resultSet.getObject(i);
+                        row.put(columnName, value);
+                    }
+                    resultList.add(row);
+                }
+            }
         }
+        return resultList;
     }
 	
 }
