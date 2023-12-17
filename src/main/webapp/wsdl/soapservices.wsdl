@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SoapServices" targetNamespace="http://soap.frontend/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.frontend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soap.frontend/" xmlns:tns="http://soap.frontend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="AddIntegers" type="tns:AddIntegers"/>
+  <xsd:complexType name="AddIntegers">
+    <xsd:sequence>
+      <xsd:element name="a" type="xsd:int"/>
+      <xsd:element name="b" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AddIntegersResponse" type="tns:AddIntegersResponse"/>
+  <xsd:complexType name="AddIntegersResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AddIntegers">
+    <wsdl:part name="parameters" element="tns:AddIntegers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AddIntegersResponse">
+    <wsdl:part name="parameters" element="tns:AddIntegersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SoapServicesPortType">
+    <wsdl:operation name="AddIntegers">
+      <wsdl:input name="AddIntegers" message="tns:AddIntegers">
+    </wsdl:input>
+      <wsdl:output name="AddIntegersResponse" message="tns:AddIntegersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapServicesSoapBinding" type="tns:SoapServicesPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AddIntegers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="AddIntegers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="AddIntegersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapServices">
+    <wsdl:port name="SoapServicesPort" binding="tns:SoapServicesSoapBinding">
+      <soap:address location="http://localhost:8080/CD_Project/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
