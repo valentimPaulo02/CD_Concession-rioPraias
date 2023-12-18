@@ -1,30 +1,45 @@
 package frontend.Rest;
 
-
+import frontend.objects.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Consumes("application/json")
 @Produces("application/json")
 
 
 public class ServicesImp implements Services {
-
+	
 	
 	
 	
 	@GET
-	@Path("/GetSombrinhas")
-	public Message GetSombrinhas()
+	@Path("/GetBeachServices")
+	public ReturnBeachService GetBeachServices()
 	{
-		Message message = new Message();
-		message.setContent("o Paulinho e gay");
-		System.out.print(message.getContent());
-		return message;
+		
+		System.out.println("CHEGOU AO GETBEACHSERVICES");
+	
+		List<BeachService> BeachServices = new ArrayList<BeachService>();
+		
+		BeachServices.add(new BeachService("A1", 'A', 4));
+		BeachServices.add(new BeachService("B1", 'B', 1));
+		BeachServices.add(new BeachService("C3", 'C', 10));
+		
+		
+		ReturnBeachService result = new ReturnBeachService("OK", BeachServices);
+		
+		
+		return result;
 	}
+	
+	
 	
 	
 	
@@ -43,28 +58,85 @@ public class ServicesImp implements Services {
 	
 	
 	
+	
+	
+
+	@POST
+	@Path("/RESERVAR_SOMBRINHA")
+	public Message ReserveShadow(Message message) {
+
+		Message result = new Message();
+		
+		if(!isElementPresent(Operation.class, message.getOperation().toString())) {
+			message.setContent("unknown Opearation -> " + message.getOperation());
+			message.setOperation("ERROR ---> VALID OPERATIONS: "
+					+ "	RESERVAR_SOMBRINHA,"
+					+ "	CANCELAR_SOMBRINHA,"
+					+ "	LISTAR_SOMBRINHAS,"
+					+ "	REGISTAR_UTILIZADOR");
+		
+			
+		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
+			return message;
+		}
+		
+		//goto client rmi and send
+		
+			
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	@POST
 	@Path("/SendData")
 	public Message SendData(Message message)
 	{
 		
-		System.out.println("Chegou aqui!!!!!!!");
+		Message result = new Message();
+		
+		//System.out.println("Chegou aqui!!!!!!!");
 	
+		//if the operation that is recived isnt available returns error message
+		if(!isElementPresent(Operation.class, message.getOperation().toString())) {
+			result.setContent("unknown Opearation -> " + message.getOperation());
+			result.setOperation("ERROR ---> VALID OPERATIONS: "
+					+ "	RESERVAR_SOMBRINHA,"
+					+ "	CANCELAR_SOMBRINHA,"
+					+ "	LISTAR_SOMBRINHAS,"
+					+ "	REGISTAR_UTILIZADOR");
 		
-		
-		
-		if(isElementPresent(Operation.class, message.getOperation().toString())) {
 			
-			System.out.println("content da mensagem |content|	->   " + message.getContent());
-			System.out.println("content da mensagem |operation|	->   " + message.getOperation());
-			message.setOperation("ok");
+		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
+			return result;
+
 		}
+			
 		
 		
-		message.setContent("unknown Opearation -> " + message.getOperation());
-		message.setOperation("ERROR");
-		return message;
+		System.out.println();
+		if(message.getOperation() == "RESERVAR_SOMBRINHA") {
+			System.out.print("entrou aqui");
+			result.setOperation("OK");
+			result.setContent("operation succeded");
+		
+		}
+
+
+		return result;
+		
+	
 	}
+	
+	
+
+	
+	
+	
+	
 	
 	
 	
