@@ -20,13 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 public class ReserveShadowResponse {
 
     @XmlElement(name = "return")
-    private frontend.Rest.Message _return;
+    private objects.Message _return;
 
-    public frontend.Rest.Message getReturn() {
+    public objects.Message getReturn() {
         return this._return;
     }
 
-    public void setReturn(frontend.Rest.Message new_return)  {
+    public void setReturn(objects.Message new_return)  {
         this._return = new_return;
     }
 

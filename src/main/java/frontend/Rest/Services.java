@@ -1,5 +1,5 @@
 package frontend.Rest;
-import frontend.objects.*;
+import objects.*;
 
 
 import javax.jws.WebService;
@@ -13,12 +13,10 @@ public interface Services {
 	//LISTAR SOMBRINHAS
 	ReturnBeachService GetBeachServices();
 	//RESERVAR SOMBRINHA
-	Message ReserveShadow(ReserveShadowContent content);
-	
-	
-	
-	
-	
+	Message ReserveShadow(Booking content);
+
+	//CANCELAR_SOMBRINHA
+	Message CancelShadow(Service shadow);
 	
 	//Message SendData(Message message);
 	

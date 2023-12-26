@@ -1,4 +1,4 @@
-package frontend.Rest;
+package objects;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.util.ClassUtil.Ctor;
 
 
 @XmlRootElement(name = "Message")
-
 public class Message {
 	
 	private String content;

@@ -1,6 +1,6 @@
-package frontend.Rest;
+//package objects;
 
-public enum Operation {
+/*public enum Operation {
 	RESERVAR_SOMBRINHA("RESERVAR_SOMBRINHA"),
 	CANCELAR_SOMBRINHA("CANCELAR_SOMBRINHA"),
 	LISTAR_SOMBRINHAS("LISTAR_SOMBRINHAS"),
@@ -18,4 +18,4 @@ public enum Operation {
 	public String getOperationString() {
 		return OperationString;
 	}
-}
+}*/

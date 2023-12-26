@@ -1,11 +1,13 @@
 package frontend.Rest;
 
-import frontend.objects.*;
+import objects.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
+import org.apache.xml.security.utils.UnsyncByteArrayOutputStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ public class ServicesImp implements Services {
 
 	@POST
 	@Path("/CANCELAR_SOMBRINHA")
-	public Message CancelShadow(BeachService shadow) {
+	public Message CancelShadow(Service shadow) {
 
 		
 		return new Message("Succes", "CANCELAR_SOMBRINHA");
@@ -64,7 +66,7 @@ public class ServicesImp implements Services {
 	 * User-Agent: Fiddler
 		Host: localhost:8080
 		Content-Length: 61
-		Conten-Type: application/json
+		Content-Type: application/json
 
 	 * {"Message":{"content":"ok", "operacion":"ola"}}
 	 * 
@@ -76,14 +78,14 @@ public class ServicesImp implements Services {
 
 	@POST
 	@Path("/RESERVAR_SOMBRINHA")
-	public Message ReserveShadow(ReserveShadowContent content) {
+	public Message ReserveShadow(Booking content) {
 
 		Message result = new Message();
 		
 		
-		System.out.println(content.getBeach());
+		System.out.println(content.getBeachId());
 		
-		result.setContent(content.getBeach());
+		result.setContent(content.getBeachId());
 		result.setOperation("OK");
 		
 		return result;

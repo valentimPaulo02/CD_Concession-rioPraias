@@ -2,6 +2,12 @@ package objects;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+
+
+@XmlRootElement(name = "Booking")
 public class Booking implements Serializable{
 	
 	private int Id;
@@ -37,31 +43,58 @@ public class Booking implements Serializable{
 	public int getId() {
 		return Id;
 	}
-	
+
+	public void setId(int Id) {
+		this.Id = Id;
+	}
+
 	public int getUserId() {
 		return UserId;
 	}
-	
+
+	public void setUserId(int UserId) {
+		this.UserId = UserId;
+	}
+
 	public String getServiceId() {
 		return ServiceId;
 	}
-	
+
+	public void setServiceId(String ServiceId) {
+		this.ServiceId = ServiceId;
+	}
+
 	public String getBeachId() {
 		return BeachId;
 	}
-	
+
+	public void setBeachId(String BeachId) {
+		this.BeachId = BeachId;
+	}
+
 	public String getDate() {
 		return Date;
 	}
-	
+
+	public void setDate(String Date) {
+		this.Date = Date;
+	}
+
 	public int getStartTime() {
 		return StartTime;
 	}
-	
+
+	public void setStartTime(int StartTime) {
+		this.StartTime = StartTime;
+	}
+
 	public int getEndingTime() {
 		return EndingTime;
 	}
-	
+
+	public void setEndingTime(int EndingTime) {
+		this.EndingTime = EndingTime;
+	}
 	
 	public String BookingToString() {
 		return "BookingId: "+Id+" | ServiceId: "+ServiceId+" | Date: "+Date+" | StartTime: "+StartTime+" | EndingTime: "+EndingTime;

@@ -20,13 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 public class ReserveShadow {
 
     @XmlElement(name = "arg0")
-    private frontend.Rest.ReserveShadowContent arg0;
+    private objects.Booking arg0;
 
-    public frontend.Rest.ReserveShadowContent getArg0() {
+    public objects.Booking getArg0() {
         return this.arg0;
     }
 
-    public void setArg0(frontend.Rest.ReserveShadowContent newArg0)  {
+    public void setArg0(objects.Booking newArg0)  {
         this.arg0 = newArg0;
     }
 

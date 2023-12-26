@@ -1,6 +1,5 @@
 
 package frontend.Rest.jaxws;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -20,13 +19,13 @@ import javax.xml.bind.annotation.XmlType;
 public class GetBeachServicesResponse {
 
     @XmlElement(name = "return")
-    private frontend.Rest.ReturnBeachService _return;
+    private objects.ReturnBeachService _return;
 
-    public frontend.Rest.ReturnBeachService getReturn() {
+    public objects.ReturnBeachService getReturn() {
         return this._return;
     }
 
-    public void setReturn(frontend.Rest.ReturnBeachService new_return)  {
+    public void setReturn(objects.ReturnBeachService new_return)  {
         this._return = new_return;
     }
 

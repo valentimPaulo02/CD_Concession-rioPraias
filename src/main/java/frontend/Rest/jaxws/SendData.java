@@ -20,13 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 public class SendData {
 
     @XmlElement(name = "arg0")
-    private frontend.Rest.Message arg0;
+    private objects.Message arg0;
 
-    public frontend.Rest.Message getArg0() {
+    public objects.Message getArg0() {
         return this.arg0;
     }
 
-    public void setArg0(frontend.Rest.Message newArg0)  {
+    public void setArg0(objects.Message newArg0)  {
         this.arg0 = newArg0;
     }
 
