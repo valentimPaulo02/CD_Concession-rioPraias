@@ -84,7 +84,9 @@ public class ServicesImp implements Services {
 			result.setContent("content_null");
 			result.setOperation("ERROR");
 
-		}	
+		}
+		
+		System.out.println(content.getBeach());
 		
 		result.setContent(content.getBeach()  + ":Sucess");
 		result.setOperation("OK");

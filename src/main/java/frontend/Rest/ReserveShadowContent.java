@@ -3,43 +3,45 @@ package frontend.Rest;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "ReserveShadowContent")
 public class ReserveShadowContent {
 
-    private char beach;
-    private int spotNumber;
-    private int numberOfPersons;
+    private char Beach;
+    private String Date;
+    private int NumberOfPersons;
 
     public ReserveShadowContent() {
     }
 
-    public ReserveShadowContent(char beach, int spotNumber, int numberOfPersons) {
-        this.beach = beach;
-        this.spotNumber = spotNumber;
-        this.numberOfPersons = numberOfPersons;
+    public ReserveShadowContent(char Beach, String Date, int NumberOfPersons) {
+        this.Beach = Beach;
+        this.Date = Date;
+        this.NumberOfPersons = NumberOfPersons;
     }
 
     public char getBeach() {
-        return beach;
+        return Beach;
     }
 
-    public void setBeach(char beach) {
-        this.beach = beach;
+    public void setBeach(char Beach) {
+        this.Beach = Beach;
     }
 
-    public int getSpotNumber() {
-        return spotNumber;
+    public String getDate() {
+        return Date;
     }
 
-    public void setSpotNumber(int spotNumber) {
-        this.spotNumber = spotNumber;
+    public void setDate(String Date) {
+        this.Date = Date;
     }
 
     public int getNumberOfPersons() {
-        return numberOfPersons;
+        return NumberOfPersons;
     }
 
-    public void setNumberOfPersons(int numberOfPersons) {
-        this.numberOfPersons = numberOfPersons;
+    public void setNumberOfPersons(int NumberOfPersons) {
+        this.NumberOfPersons = NumberOfPersons;
     }
 }

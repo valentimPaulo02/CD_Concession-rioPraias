@@ -1,5 +1,10 @@
 package frontend.Rest;
 
+
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "BeachService")
 public class BeachService {
 	
 	private String Id;
