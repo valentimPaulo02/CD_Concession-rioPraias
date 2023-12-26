@@ -1,6 +1,6 @@
 package frontend.Rest;
 
-
+import frontend.objects.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ServicesImp implements Services {
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -30,14 +31,24 @@ public class ServicesImp implements Services {
 		
 		return new Message("Succes", "CANCELAR_SOMBRINHA");
 	}
+=======
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 	
 	
 	
 	@GET
+<<<<<<< HEAD
 	@Path("/LISTAR_SOMBRINHAS")
 	public ReturnBeachService GetBeachServices()
 	{
 		
+=======
+	@Path("/GetBeachServices")
+	public ReturnBeachService GetBeachServices()
+	{
+		
+		System.out.println("CHEGOU AO GETBEACHSERVICES");
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 	
 		List<BeachService> BeachServices = new ArrayList<BeachService>();
 		
@@ -48,11 +59,15 @@ public class ServicesImp implements Services {
 		
 		ReturnBeachService result = new ReturnBeachService("OK", BeachServices);
 		
+<<<<<<< HEAD
 		for(BeachService service: result.getBeachServices()) {
 			System.out.println(service.getBeachId());
 		}
 		
 	//	System.out.println("CHEGOU AO GETBEACHSERVICES");
+=======
+		
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 		return result;
 	}
 	
@@ -80,6 +95,7 @@ public class ServicesImp implements Services {
 
 	@POST
 	@Path("/RESERVAR_SOMBRINHA")
+<<<<<<< HEAD
 	public Message ReserveShadow(ReserveShadowContent content) {
 
 		Message result = new Message();
@@ -92,6 +108,28 @@ public class ServicesImp implements Services {
 		
 		result.setContent(content.getBeach()  + ":Sucess");
 		result.setOperation("OK");
+=======
+	public Message ReserveShadow(Message message) {
+
+		Message result = new Message();
+		
+		if(!isElementPresent(Operation.class, message.getOperation().toString())) {
+			message.setContent("unknown Opearation -> " + message.getOperation());
+			message.setOperation("ERROR ---> VALID OPERATIONS: "
+					+ "	RESERVAR_SOMBRINHA,"
+					+ "	CANCELAR_SOMBRINHA,"
+					+ "	LISTAR_SOMBRINHAS,"
+					+ "	REGISTAR_UTILIZADOR");
+		
+			
+		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
+			return message;
+		}
+		
+		//goto client rmi and send
+		
+			
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 		return result;
 	}
 	
@@ -100,6 +138,7 @@ public class ServicesImp implements Services {
 	
 	
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -108,6 +147,8 @@ public class ServicesImp implements Services {
 	
 	
 	
+=======
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 	@POST
 	@Path("/SendData")
 	public Message SendData(Message message)
@@ -125,6 +166,7 @@ public class ServicesImp implements Services {
 					+ "	CANCELAR_SOMBRINHA,"
 					+ "	LISTAR_SOMBRINHAS,"
 					+ "	REGISTAR_UTILIZADOR");
+<<<<<<< HEAD
 			
 			
 			
@@ -134,6 +176,12 @@ public class ServicesImp implements Services {
 			
 		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
 			return message;
+=======
+		
+			
+		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
+			return result;
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 
 		}
 			
@@ -148,7 +196,11 @@ public class ServicesImp implements Services {
 		}
 
 
+<<<<<<< HEAD
 		return message;
+=======
+		return result;
+>>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 		
 	
 	}
