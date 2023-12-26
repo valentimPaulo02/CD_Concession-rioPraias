@@ -80,15 +80,10 @@ public class ServicesImp implements Services {
 
 		Message result = new Message();
 		
-		if(content == null) {
-			result.setContent("content_null");
-			result.setOperation("ERROR");
-
-		}
 		
 		System.out.println(content.getBeach());
 		
-		result.setContent(content.getBeach()  + ":Sucess");
+		result.setContent(content.getBeach());
 		result.setOperation("OK");
 		
 		return result;

@@ -8,24 +8,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "ReserveShadowContent")
 public class ReserveShadowContent {
 
-    private char Beach;
+    private String Beach;
     private String Date;
     private int NumberOfPersons;
 
     public ReserveShadowContent() {
     }
 
-    public ReserveShadowContent(char Beach, String Date, int NumberOfPersons) {
+    public ReserveShadowContent(String Beach, String Date, int NumberOfPersons) {
         this.Beach = Beach;
         this.Date = Date;
         this.NumberOfPersons = NumberOfPersons;
     }
 
-    public char getBeach() {
+    public String getBeach() {
         return Beach;
     }
 
-    public void setBeach(char Beach) {
+    public void setBeach(String Beach) {
         this.Beach = Beach;
     }
 
