@@ -1,4 +1,4 @@
-<xs:schema xmlns:tns="http://Rest.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://Rest.frontend/" version="1.0">
+<xs:schema xmlns:tns="http://Rest.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Rest.frontend/" version="1.0">
 
   <xs:element name="GetBeachServices" type="tns:GetBeachServices"/>
 
@@ -6,13 +6,27 @@
 
   <xs:element name="Message" type="tns:message"/>
 
-  <xs:element name="SendData" type="tns:SendData"/>
+  <xs:element name="ReserveShadow" type="tns:ReserveShadow"/>
 
-  <xs:element name="SendDataResponse" type="tns:SendDataResponse"/>
+  <xs:element name="ReserveShadowResponse" type="tns:ReserveShadowResponse"/>
 
-  <xs:complexType name="SendData">
+  <xs:complexType name="ReserveShadow">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:reserveShadowContent"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reserveShadowContent">
+    <xs:sequence>
+      <xs:element name="beach" type="xs:unsignedShort"/>
+      <xs:element name="numberOfPersons" type="xs:int"/>
+      <xs:element name="spotNumber" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReserveShadowResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:message"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -20,12 +34,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="content" type="xs:string"/>
       <xs:element minOccurs="0" name="operation" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="SendDataResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 

@@ -3,45 +3,43 @@ package frontend.Rest;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+
 public class ReserveShadowContent {
-	
-	private String Beach;
-	private String Date;
-	private int NumberofPersons;
 
-	public ReserveShadowContent() {
-	}
+    private char beach;
+    private int spotNumber;
+    private int numberOfPersons;
 
-	public ReserveShadowContent(String Beach, String Date, int NumberofPersons) {
-		this.Beach = Beach;
-		this.Date = Date;
-		this.NumberofPersons = NumberofPersons;
-	}
+    public ReserveShadowContent() {
+    }
 
-	public String getBeach() {
-		return Beach;
-	}
+    public ReserveShadowContent(char beach, int spotNumber, int numberOfPersons) {
+        this.beach = beach;
+        this.spotNumber = spotNumber;
+        this.numberOfPersons = numberOfPersons;
+    }
 
-	public void setBeach(String Beach) {
-		this.Beach = Beach;
-	}
+    public char getBeach() {
+        return beach;
+    }
 
-	public String getDate() {
-		return Date;
-	}
+    public void setBeach(char beach) {
+        this.beach = beach;
+    }
 
-	public void setDate(String Date) {
-		this.Date = Date;
-	}
+    public int getSpotNumber() {
+        return spotNumber;
+    }
 
-	public int getNumberofPersons() {
-		return NumberofPersons;
-	}
+    public void setSpotNumber(int spotNumber) {
+        this.spotNumber = spotNumber;
+    }
 
-	public void setNumberofPersons(int NumberofPersons) {
-		this.NumberofPersons = NumberofPersons;
-	}
-	
-	
+    public int getNumberOfPersons() {
+        return numberOfPersons;
+    }
 
+    public void setNumberOfPersons(int numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
+    }
 }

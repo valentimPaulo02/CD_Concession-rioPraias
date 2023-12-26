@@ -16,58 +16,41 @@ import java.util.List;
 
 public class ServicesImp implements Services {
 	
-<<<<<<< HEAD
-	
-	
-	
-	
+
 	@POST
 	@Path("/CANCELAR_SOMBRINHA")
 	public Message CancelShadow(BeachService shadow) {
-		
-		
-		
-		
+
 		
 		return new Message("Succes", "CANCELAR_SOMBRINHA");
 	}
-=======
->>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
+
 	
 	
 	
 	@GET
-<<<<<<< HEAD
 	@Path("/LISTAR_SOMBRINHAS")
 	public ReturnBeachService GetBeachServices()
 	{
+
 		
-=======
-	@Path("/GetBeachServices")
-	public ReturnBeachService GetBeachServices()
-	{
-		
-		System.out.println("CHEGOU AO GETBEACHSERVICES");
->>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
+		System.out.println("CHEGOU AO LISTAR_SOMBRINHAS");
 	
-		List<BeachService> BeachServices = new ArrayList<BeachService>();
+		/*List<BeachService> BeachServices = new ArrayList<BeachService>();
 		
 		BeachServices.add(new BeachService("A1", 'A', 4));
 		BeachServices.add(new BeachService("B1", 'B', 1));
 		BeachServices.add(new BeachService("C3", 'C', 10));
 		
 		
-		ReturnBeachService result = new ReturnBeachService("OK", BeachServices);
 		
-<<<<<<< HEAD
+		
 		for(BeachService service: result.getBeachServices()) {
 			System.out.println(service.getBeachId());
-		}
+		}*/
 		
-	//	System.out.println("CHEGOU AO GETBEACHSERVICES");
-=======
+		ReturnBeachService result = new ReturnBeachService("OK", "A1,B2,B2,B2,B2,B2");
 		
->>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 		return result;
 	}
 	
@@ -89,13 +72,10 @@ public class ServicesImp implements Services {
 	 * */
 	
 	
-	
-	
-	
+
 
 	@POST
 	@Path("/RESERVAR_SOMBRINHA")
-<<<<<<< HEAD
 	public Message ReserveShadow(ReserveShadowContent content) {
 
 		Message result = new Message();
@@ -108,47 +88,13 @@ public class ServicesImp implements Services {
 		
 		result.setContent(content.getBeach()  + ":Sucess");
 		result.setOperation("OK");
-=======
-	public Message ReserveShadow(Message message) {
-
-		Message result = new Message();
 		
-		if(!isElementPresent(Operation.class, message.getOperation().toString())) {
-			message.setContent("unknown Opearation -> " + message.getOperation());
-			message.setOperation("ERROR ---> VALID OPERATIONS: "
-					+ "	RESERVAR_SOMBRINHA,"
-					+ "	CANCELAR_SOMBRINHA,"
-					+ "	LISTAR_SOMBRINHAS,"
-					+ "	REGISTAR_UTILIZADOR");
-		
-			
-		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
-			return message;
-		}
-		
-		//goto client rmi and send
-		
-			
->>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
 		return result;
 	}
+
 	
 	
-	
-	
-	
-	
-<<<<<<< HEAD
-	
-	
-	
-	
-	
-	
-	
-	
-=======
->>>>>>> e4e0323eeed050f1105652196e1918bd7326ddc2
+	/*
 	@POST
 	@Path("/SendData")
 	public Message SendData(Message message)
@@ -204,7 +150,7 @@ public class ServicesImp implements Services {
 		
 	
 	}
-	
+	*/
 	
 
 	
@@ -212,7 +158,7 @@ public class ServicesImp implements Services {
 	
 	
 	
-	
+	/*
 	
     // Method to check if an element is present in the enum
     private static <T extends Enum<T>> boolean isElementPresent(Class<T> enumClass, String targetElement) {
@@ -225,7 +171,7 @@ public class ServicesImp implements Services {
             return false;
         }
     }
-	
+	*/
 	
 	
 	

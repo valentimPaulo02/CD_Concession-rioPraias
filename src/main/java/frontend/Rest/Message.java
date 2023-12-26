@@ -1,4 +1,4 @@
-package frontend.objects;
+package frontend.Rest;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

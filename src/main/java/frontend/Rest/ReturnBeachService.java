@@ -7,7 +7,9 @@ public class ReturnBeachService {
 
 	
 	private String Operation;
-	private List<BeachService> BeachServices = new ArrayList<BeachService>();
+	//private List<BeachService> BeachServices = new ArrayList<BeachService>();
+	private String BeachServices;
+	
 	
 	
 	
@@ -16,16 +18,16 @@ public class ReturnBeachService {
 	}
 	
 	
-	public ReturnBeachService(String Operation, List<BeachService> BeachServices) {
+	public ReturnBeachService(String Operation, String BeachServices) {
 		this.Operation = Operation;
 		this.BeachServices = BeachServices;
 	}
 	
-	public void setBeachServices(List<BeachService> BeachServices) {
+	public void setBeachServices(String BeachServices) {
 		this.BeachServices = BeachServices;
 	}
 	
-	public List<BeachService> getBeachServices(){
+	public String getBeachServices(){
 		return BeachServices;
 	}
 	

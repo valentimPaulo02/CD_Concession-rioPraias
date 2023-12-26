@@ -5,12 +5,12 @@
   <import namespace="http://Rest.frontend/" schemaLocation="services_schema1.xsd"/>
 </schema>
   </wsdl:types>
-  <wsdl:message name="SendData">
-    <wsdl:part name="parameters" element="tns:SendData">
+  <wsdl:message name="ReserveShadow">
+    <wsdl:part name="parameters" element="tns:ReserveShadow">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="SendDataResponse">
-    <wsdl:part name="parameters" element="tns:SendDataResponse">
+  <wsdl:message name="ReserveShadowResponse">
+    <wsdl:part name="parameters" element="tns:ReserveShadowResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetBeachServices">
@@ -22,10 +22,10 @@
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="Services">
-    <wsdl:operation name="SendData">
-      <wsdl:input name="SendData" message="tns:SendData">
+    <wsdl:operation name="ReserveShadow">
+      <wsdl:input name="ReserveShadow" message="tns:ReserveShadow">
     </wsdl:input>
-      <wsdl:output name="SendDataResponse" message="tns:SendDataResponse">
+      <wsdl:output name="ReserveShadowResponse" message="tns:ReserveShadowResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetBeachServices">
@@ -37,12 +37,12 @@
   </wsdl:portType>
   <wsdl:binding name="ServicesServiceSoapBinding" type="tns:Services">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="SendData">
+    <wsdl:operation name="ReserveShadow">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="SendData">
+      <wsdl:input name="ReserveShadow">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="SendDataResponse">
+      <wsdl:output name="ReserveShadowResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
