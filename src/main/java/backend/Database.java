@@ -7,10 +7,11 @@ import java.util.Map;
 
 public class Database {
 	
-	private Connection connection;
+    private Connection connection;
     private String jdbcUrl = "jdbc:mysql://aws.connect.psdb.cloud/cd_project?sslMode=VERIFY_IDENTITY";
     private String username = "tdl1y6upwo3shau53djr";
     private String password = "----pscale_pw_DxyxF21qIQHDnDsgh3Wt----lLrrlHalUo1wPIVpJFHY802----";
+	// A PASSWORD É ESTA SEM OS TRAÇOS QUE ESTÃO NO INICIO FIM E MEIO
     
     public Database() {
     	
