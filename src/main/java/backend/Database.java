@@ -9,8 +9,8 @@ public class Database {
 	
 	private Connection connection;
     private String jdbcUrl = "jdbc:mysql://aws.connect.psdb.cloud/cd_project?sslMode=VERIFY_IDENTITY";
-    private String username = "xcfmc3uu4r75gvd8lau0";
-    private String password = "pscale_pw_I7uwKZERoCJ0AUxmrCkVltptzNePoaz12vkFRyZWjOR";
+    private String username = "tdl1y6upwo3shau53djr";
+    private String password = "----pscale_pw_DxyxF21qIQHDnDsgh3Wt----lLrrlHalUo1wPIVpJFHY802----";
     
     public Database() {
     	
