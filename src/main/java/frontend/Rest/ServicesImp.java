@@ -7,24 +7,56 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Consumes("application/json")
 @Produces("application/json")
 
 
 public class ServicesImp implements Services {
-
+	
+	
+	
+	
+	
+	@POST
+	@Path("/CANCELAR_SOMBRINHA")
+	public Message CancelShadow(BeachService shadow) {
+		
+		
+		
+		
+		
+		return new Message("Succes", "CANCELAR_SOMBRINHA");
+	}
 	
 	
 	
 	@GET
-	@Path("/GetSombrinhas")
-	public Message GetSombrinhas()
+	@Path("/LISTAR_SOMBRINHAS")
+	public ReturnBeachService GetBeachServices()
 	{
-		Message message = new Message();
-		message.setContent("o Paulinho e gay");
-		System.out.print(message.getContent());
-		return message;
+		
+	
+		List<BeachService> BeachServices = new ArrayList<BeachService>();
+		
+		BeachServices.add(new BeachService("A1", 'A', 4));
+		BeachServices.add(new BeachService("B1", 'B', 1));
+		BeachServices.add(new BeachService("C3", 'C', 10));
+		
+		
+		ReturnBeachService result = new ReturnBeachService("OK", BeachServices);
+		
+		for(BeachService service: result.getBeachServices()) {
+			System.out.println(service.getBeachId());
+		}
+		
+	//	System.out.println("CHEGOU AO GETBEACHSERVICES");
+		return result;
 	}
+	
+	
 	
 	
 	
@@ -43,28 +75,90 @@ public class ServicesImp implements Services {
 	
 	
 	
+	
+	
+
+	@POST
+	@Path("/RESERVAR_SOMBRINHA")
+	public Message ReserveShadow(ReserveShadowContent content) {
+
+		Message result = new Message();
+		
+		if(content == null) {
+			result.setContent("content_null");
+			result.setOperation("ERROR");
+
+		}	
+		
+		result.setContent(content.getBeach()  + ":Sucess");
+		result.setOperation("OK");
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@POST
 	@Path("/SendData")
 	public Message SendData(Message message)
 	{
 		
-		System.out.println("Chegou aqui!!!!!!!");
+		Message result = new Message();
+		
+		//System.out.println("Chegou aqui!!!!!!!");
 	
-		
-		
-		
-		if(isElementPresent(Operation.class, message.getOperation().toString())) {
+		//if the operation that is recived isnt available returns error message
+		if(!isElementPresent(Operation.class, message.getOperation().toString())) {
+			result.setContent("unknown Opearation -> " + message.getOperation());
+			result.setOperation("ERROR ---> VALID OPERATIONS: "
+					+ "	RESERVAR_SOMBRINHA,"
+					+ "	CANCELAR_SOMBRINHA,"
+					+ "	LISTAR_SOMBRINHAS,"
+					+ "	REGISTAR_UTILIZADOR");
 			
-			System.out.println("content da mensagem |content|	->   " + message.getContent());
-			System.out.println("content da mensagem |operation|	->   " + message.getOperation());
-			message.setOperation("ok");
+			
+			
+			result.setContent("OK");
+		
+		
+			
+		//error message returned has all the avauilable operations and returns the not available operation to the consumer	
+			return message;
+
 		}
+			
 		
 		
-		message.setContent("unknown Opearation -> " + message.getOperation());
-		message.setOperation("ERROR");
+		System.out.println();
+		if(message.getOperation() == "RESERVAR_SOMBRINHA") {
+			System.out.print("entrou aqui");
+			result.setOperation("OK");
+			result.setContent("operation succeded");
+		
+		}
+
+
 		return message;
+		
+	
 	}
+	
+	
+
+	
+	
+	
+	
 	
 	
 	
