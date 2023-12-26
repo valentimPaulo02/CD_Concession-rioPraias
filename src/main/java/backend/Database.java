@@ -9,8 +9,8 @@ public class Database {
 	
 	private Connection connection;
     private String jdbcUrl = "jdbc:mysql://aws.connect.psdb.cloud/cd_project?sslMode=VERIFY_IDENTITY";
-    private String username = "sjjnfomduzbwtemfx5ne";
-    private String password = "";
+    private String username = "xcfmc3uu4r75gvd8lau0";
+    private String password = "pscale_pw_I7uwKZERoCJ0AUxmrCkVltptzNePoaz12vkFRyZWjOR";
     
     public Database() {
     	
@@ -31,7 +31,7 @@ public class Database {
         }
     }
 
-    public List<Map<String, Object>> executeQueryWithData(String query, Map<Integer, Object> parameters) throws SQLException {
+    public List<Map<String, Object>> executeQueryGetData(String query, Map<Integer, Object> parameters) throws SQLException {
         if (connection == null || connection.isClosed()) {
             throw new SQLException("Database connection is not established.");
         }
@@ -60,6 +60,20 @@ public class Database {
             }
         }
         return resultList;
+    }
+    
+    public int executeQueryUpdateData(String query, Map<Integer, Object> parameters) throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            throw new SQLException("Database connection is not established.");
+        }
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            for (Map.Entry<Integer, Object> entry : parameters.entrySet()) {
+                preparedStatement.setObject(entry.getKey(), entry.getValue());
+            }
+
+            return preparedStatement.executeUpdate();
+        }
     }
 	
 }
