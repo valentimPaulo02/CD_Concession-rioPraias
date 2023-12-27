@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 
 import org.apache.xml.security.utils.UnsyncByteArrayOutputStream;
 
+import frontend.ClientRMI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,13 +83,16 @@ public class ServicesImp implements Services {
 	public Message ReserveShadow(Booking content) {
 
 		Message result = new Message();
+	
 		
 		
-		System.out.println(content.getBeachId());
 		
-		result.setContent(content.getBeachId());
-		result.setOperation("OK");
+		ClientRMI rmi = new ClientRMI();
+		int a = rmi.reservarSombrinha();
 		
+		result.setOperation("RESERVAR_SOMBRINHA");
+		result.setContent("" + a);
+	
 		return result;
 	}
 
