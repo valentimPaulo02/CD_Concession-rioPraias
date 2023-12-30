@@ -1,11 +1,21 @@
 package frontend.soap;
+import frontend.objects.*;
+
 
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://soap.frontend/", portName = "SoapServicesPort", serviceName = "SoapServicesService")
-public class SoapServices {
+
+
+@WebService(name = "Services", targetNamespace = "http://soap.frontend/")
+public interface SoapServices {
 	
-	public int AddIntegers(int a, int b) {
-		return a+b;
-	}
+	
+	//LISTAR SOMBRINHAS
+	ReturnBeachService GetBeachServices();
+	//RESERVAR SOMBRINHA
+	Message ReserveShadow(Message message);
+	
+	Message SendData(Message message);
+	
+	
 }

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SoapServicesImpService" targetNamespace="http://soap.frontend/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.frontend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://soap.frontend/" version="1.0" xmlns:tns="http://soap.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="GetBeachServices" type="tns:GetBeachServices"/>
+
+  <xs:element name="GetBeachServicesResponse" type="tns:GetBeachServicesResponse"/>
+
+  <xs:element name="Message" type="tns:message"/>
+
+  <xs:element name="ReserveShadow" type="tns:ReserveShadow"/>
+
+  <xs:element name="ReserveShadowResponse" type="tns:ReserveShadowResponse"/>
+
+  <xs:element name="SendData" type="tns:SendData"/>
+
+  <xs:element name="SendDataResponse" type="tns:SendDataResponse"/>
+
+  <xs:complexType name="SendData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SendDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GetBeachServices">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="GetBeachServicesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:returnBeachService"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="returnBeachService">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="beachServices" nillable="true" type="tns:beachService"/>
+      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="beachService">
+    <xs:sequence>
+      <xs:element name="beachId" type="xs:unsignedShort"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element name="nbrOfSeats" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReserveShadow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReserveShadowResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:message"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SendData">
+    <wsdl:part name="parameters" element="tns:SendData">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReserveShadow">
+    <wsdl:part name="parameters" element="tns:ReserveShadow">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReserveShadowResponse">
+    <wsdl:part name="parameters" element="tns:ReserveShadowResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendDataResponse">
+    <wsdl:part name="parameters" element="tns:SendDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetBeachServices">
+    <wsdl:part name="parameters" element="tns:GetBeachServices">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetBeachServicesResponse">
+    <wsdl:part name="parameters" element="tns:GetBeachServicesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SoapServices">
+    <wsdl:operation name="SendData">
+      <wsdl:input name="SendData" message="tns:SendData">
+    </wsdl:input>
+      <wsdl:output name="SendDataResponse" message="tns:SendDataResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeachServices">
+      <wsdl:input name="GetBeachServices" message="tns:GetBeachServices">
+    </wsdl:input>
+      <wsdl:output name="GetBeachServicesResponse" message="tns:GetBeachServicesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveShadow">
+      <wsdl:input name="ReserveShadow" message="tns:ReserveShadow">
+    </wsdl:input>
+      <wsdl:output name="ReserveShadowResponse" message="tns:ReserveShadowResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapServicesImpServiceSoapBinding" type="tns:SoapServices">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendData">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="SendData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SendDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeachServices">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetBeachServices">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetBeachServicesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReserveShadow">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ReserveShadow">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ReserveShadowResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapServicesImpService">
+    <wsdl:port name="SoapServicesImpPort" binding="tns:SoapServicesImpServiceSoapBinding">
+      <soap:address location="http://localhost:8080/CD_Project/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

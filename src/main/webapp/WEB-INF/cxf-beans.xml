@@ -4,12 +4,12 @@
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
-	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	<jaxws:endpoint xmlns:tns="http://soap.frontend/"
-		id="soapservices" implementor="frontend.soap.SoapServices"
-		wsdlLocation="wsdl/soapservices.wsdl"
-		endpointName="tns:SoapServicesPort" serviceName="tns:SoapServices"
-		address="/SoapServicesPort">
+		id="soapservicesimp" implementor="frontend.soap.SoapServicesImp"
+		wsdlLocation="wsdl/soapservicesimp.wsdl"
+		endpointName="tns:SoapServicesImpPort"
+		serviceName="tns:SoapServicesImpService"
+		address="/SoapServicesImpPort">
 		<jaxws:features>
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>
