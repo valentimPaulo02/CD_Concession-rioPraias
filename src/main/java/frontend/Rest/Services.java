@@ -10,13 +10,13 @@ import javax.jws.WebService;
 public interface Services {
 	
 	
-	//LISTAR SOMBRINHAS
+	//LISTAR_SOMBRINHAS
 	ReturnBeachService GetBeachServices();
-	//RESERVAR SOMBRINHA
+	//RESERVAR_SOMBRINHA
 	Message ReserveShadow(Booking content);
-
 	//CANCELAR_SOMBRINHA
 	Message CancelShadow(Service shadow);
+	//LISTAR_RESERVAS
 	
 	//Message SendData(Message message);
 	

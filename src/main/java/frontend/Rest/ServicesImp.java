@@ -88,7 +88,7 @@ public class ServicesImp implements Services {
 		
 		
 		ClientRMI rmi = new ClientRMI();
-		int a = rmi.reservarSombrinha();
+		int a = rmi.reservarSombrinha(content);
 		
 		result.setOperation("RESERVAR_SOMBRINHA");
 		result.setContent("" + a);
