@@ -19,8 +19,7 @@ public class Booking implements Serializable{
 	private int EndingTime;
 	
 	
-	public Booking(int Id, int UserId, String ServiceId, String BeachId, String Date, int StartTime, int EndingTime) {
-		this.Id = Id;
+	public Booking(int UserId, String ServiceId, String BeachId, String Date, int StartTime, int EndingTime) {
 		this.UserId = UserId;
 		this.ServiceId = ServiceId;
 		this.BeachId = BeachId;
@@ -28,8 +27,8 @@ public class Booking implements Serializable{
 		this.StartTime = StartTime;
 		this.EndingTime = EndingTime;
 	}
-	public Booking(int UserId, String ServiceId, String Date, int StartTime, int EndingTime) {
-		this.UserId = UserId;
+	public Booking(int Id, String ServiceId, String Date, int StartTime, int EndingTime) {
+		this.Id = Id;
 		this.ServiceId = ServiceId;
 		this.Date = Date;
 		this.StartTime = StartTime;
