@@ -4,19 +4,23 @@ import objects.*;
 
 import javax.jws.WebService;
 
-
+import java.util.ArrayList;
 
 @WebService(name = "Services", targetNamespace = "http://Rest.frontend/")
 public interface Services {
 	
 	
 	//LISTAR_SOMBRINHAS
-	ReturnBeachService GetBeachServices();
+	ArrayList<Service> listarSombrinhas(Booking booking);
 	//RESERVAR_SOMBRINHA
-	Message ReserveShadow(Booking content);
+	int reservarSombrinha(Booking content);
 	//CANCELAR_SOMBRINHA
-	Message CancelShadow(Service shadow);
-	//LISTAR_RESERVAS
+	String cancelarSombrinha(Booking booking);
+	
+	//LISTAR RESERVAS
+	ArrayList<Booking> listarReservas(User user);
+	
+	
 	
 	//Message SendData(Message message);
 	

@@ -40,6 +40,10 @@ public class Booking implements Serializable{
 		this.StartTime = StartTime;
 		this.EndingTime = EndingTime;
 	}
+	//Used for CANCELAR_RESERVA
+	public Booking(int Id) {
+		this.Id = Id;
+	}
 	public Booking() {
 		
 	}
@@ -101,9 +105,9 @@ public class Booking implements Serializable{
 		this.EndingTime = EndingTime;
 	}
 	
-	public String BookingToString() {
+/*	public String BookingToString() {
 		return "BookingId: "+Id+" | ServiceId: "+ServiceId+" | Date: "+Date+" | StartTime: "+StartTime+" | EndingTime: "+EndingTime;
 	}
-	
+	*/
 
 }

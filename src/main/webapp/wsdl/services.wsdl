@@ -5,53 +5,99 @@
   <import namespace="http://Rest.frontend/" schemaLocation="services_schema1.xsd"/>
 </schema>
   </wsdl:types>
-  <wsdl:message name="ReserveShadow">
-    <wsdl:part name="parameters" element="tns:ReserveShadow">
+  <wsdl:message name="listarReservasResponse">
+    <wsdl:part name="parameters" element="tns:listarReservasResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="ReserveShadowResponse">
-    <wsdl:part name="parameters" element="tns:ReserveShadowResponse">
+  <wsdl:message name="cancelarSombrinha">
+    <wsdl:part name="parameters" element="tns:cancelarSombrinha">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetBeachServices">
-    <wsdl:part name="parameters" element="tns:GetBeachServices">
+  <wsdl:message name="listarReservas">
+    <wsdl:part name="parameters" element="tns:listarReservas">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetBeachServicesResponse">
-    <wsdl:part name="parameters" element="tns:GetBeachServicesResponse">
+  <wsdl:message name="reservarSombrinhaResponse">
+    <wsdl:part name="parameters" element="tns:reservarSombrinhaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reservarSombrinha">
+    <wsdl:part name="parameters" element="tns:reservarSombrinha">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelarSombrinhaResponse">
+    <wsdl:part name="parameters" element="tns:cancelarSombrinhaResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarSombrinhas">
+    <wsdl:part name="parameters" element="tns:listarSombrinhas">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarSombrinhasResponse">
+    <wsdl:part name="parameters" element="tns:listarSombrinhasResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="Services">
-    <wsdl:operation name="ReserveShadow">
-      <wsdl:input name="ReserveShadow" message="tns:ReserveShadow">
+    <wsdl:operation name="reservarSombrinha">
+      <wsdl:input name="reservarSombrinha" message="tns:reservarSombrinha">
     </wsdl:input>
-      <wsdl:output name="ReserveShadowResponse" message="tns:ReserveShadowResponse">
+      <wsdl:output name="reservarSombrinhaResponse" message="tns:reservarSombrinhaResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBeachServices">
-      <wsdl:input name="GetBeachServices" message="tns:GetBeachServices">
+    <wsdl:operation name="cancelarSombrinha">
+      <wsdl:input name="cancelarSombrinha" message="tns:cancelarSombrinha">
     </wsdl:input>
-      <wsdl:output name="GetBeachServicesResponse" message="tns:GetBeachServicesResponse">
+      <wsdl:output name="cancelarSombrinhaResponse" message="tns:cancelarSombrinhaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarSombrinhas">
+      <wsdl:input name="listarSombrinhas" message="tns:listarSombrinhas">
+    </wsdl:input>
+      <wsdl:output name="listarSombrinhasResponse" message="tns:listarSombrinhasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarReservas">
+      <wsdl:input name="listarReservas" message="tns:listarReservas">
+    </wsdl:input>
+      <wsdl:output name="listarReservasResponse" message="tns:listarReservasResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesServiceSoapBinding" type="tns:Services">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="ReserveShadow">
+    <wsdl:operation name="reservarSombrinha">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="ReserveShadow">
+      <wsdl:input name="reservarSombrinha">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="ReserveShadowResponse">
+      <wsdl:output name="reservarSombrinhaResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBeachServices">
+    <wsdl:operation name="cancelarSombrinha">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="GetBeachServices">
+      <wsdl:input name="cancelarSombrinha">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="GetBeachServicesResponse">
+      <wsdl:output name="cancelarSombrinhaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarSombrinhas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listarSombrinhas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listarSombrinhasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarReservas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listarReservas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listarReservasResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
