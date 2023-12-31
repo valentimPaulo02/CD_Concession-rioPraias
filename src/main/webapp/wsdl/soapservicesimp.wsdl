@@ -1,157 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions name="SoapServicesImpService" targetNamespace="http://soap.frontend/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.frontend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-    <xs:schema targetNamespace="http://soap.frontend/" version="1.0" xmlns:tns="http://soap.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-  <xs:element name="GetBeachServices" type="tns:GetBeachServices"/>
-
-  <xs:element name="GetBeachServicesResponse" type="tns:GetBeachServicesResponse"/>
-
-  <xs:element name="Message" type="tns:message"/>
-
-  <xs:element name="ReserveShadow" type="tns:ReserveShadow"/>
-
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.frontend/" version="1.0" xmlns:tns="http://soap.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Booking" type="tns:booking"/>
   <xs:element name="ReserveShadowResponse" type="tns:ReserveShadowResponse"/>
-
-  <xs:element name="SendData" type="tns:SendData"/>
-
-  <xs:element name="SendDataResponse" type="tns:SendDataResponse"/>
-
-  <xs:complexType name="SendData">
+  <xs:element name="Service" type="tns:service"/>
+  <xs:element name="cancelarSombrinha" type="tns:cancelarSombrinha"/>
+  <xs:element name="cancelarSombrinhaResponse" type="tns:CancelarSombrinhaResponse"/>
+  <xs:element name="listarReservas" type="tns:listarReservas"/>
+  <xs:element name="listarReservasResponse" type="tns:listarReservasResponse"/>
+  <xs:element name="listarSombrinhas" type="tns:listarSombrinhas"/>
+  <xs:element name="listarSombrinhasResponse" type="tns:listarSombrinhasResponse"/>
+  <xs:element name="reservarSombrinha" type="tns:reservarSombrinha"/>
+  <xs:complexType name="reservarSombrinha">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="message">
+  <xs:complexType name="booking">
     <xs:sequence>
-      <xs:element minOccurs="0" name="content" type="xs:string"/>
-      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+      <xs:element minOccurs="0" name="beachId" type="xs:string"/>
+      <xs:element minOccurs="0" name="date" type="xs:string"/>
+      <xs:element name="endingTime" type="xs:int"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+      <xs:element name="startTime" type="xs:int"/>
+      <xs:element name="userId" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="SendDataResponse">
+  <xs:complexType name="ReserveShadowResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cancelarSombrinha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CancelarSombrinhaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="GetBeachServices">
-    <xs:sequence/>
-  </xs:complexType>
-
-  <xs:complexType name="GetBeachServicesResponse">
+  <xs:complexType name="listarSombrinhas">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:returnBeachService"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="returnBeachService">
+  <xs:complexType name="listarSombrinhasResponse">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="beachServices" nillable="true" type="tns:beachService"/>
-      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:service"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="beachService">
+  <xs:complexType name="service">
     <xs:sequence>
-      <xs:element name="beachId" type="xs:unsignedShort"/>
+      <xs:element minOccurs="0" name="beachId" type="xs:string"/>
       <xs:element minOccurs="0" name="id" type="xs:string"/>
       <xs:element name="nbrOfSeats" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="ReserveShadow">
+  <xs:complexType name="listarReservas">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+      <xs:element name="arg0" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="ReserveShadowResponse">
+  <xs:complexType name="listarReservasResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:message"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
+  <xs:element name="reservarSombrinhaResponse" nillable="true" type="tns:ReserveShadowResponse"/>
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="SendData">
-    <wsdl:part name="parameters" element="tns:SendData">
+  <wsdl:message name="reservarSombrinhaResponse">
+    <wsdl:part name="parameters" element="tns:reservarSombrinhaResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="ReserveShadow">
-    <wsdl:part name="parameters" element="tns:ReserveShadow">
+  <wsdl:message name="listarReservasResponse">
+    <wsdl:part name="parameters" element="tns:listarReservasResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="ReserveShadowResponse">
-    <wsdl:part name="parameters" element="tns:ReserveShadowResponse">
+  <wsdl:message name="cancelarSombrinha">
+    <wsdl:part name="parameters" element="tns:cancelarSombrinha">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="SendDataResponse">
-    <wsdl:part name="parameters" element="tns:SendDataResponse">
+  <wsdl:message name="listarReservas">
+    <wsdl:part name="parameters" element="tns:listarReservas">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetBeachServices">
-    <wsdl:part name="parameters" element="tns:GetBeachServices">
+  <wsdl:message name="reservarSombrinha">
+    <wsdl:part name="parameters" element="tns:reservarSombrinha">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="GetBeachServicesResponse">
-    <wsdl:part name="parameters" element="tns:GetBeachServicesResponse">
+  <wsdl:message name="cancelarSombrinhaResponse">
+    <wsdl:part name="parameters" element="tns:cancelarSombrinhaResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:portType name="SoapServices">
-    <wsdl:operation name="SendData">
-      <wsdl:input name="SendData" message="tns:SendData">
+  <wsdl:message name="listarSombrinhas">
+    <wsdl:part name="parameters" element="tns:listarSombrinhas">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listarSombrinhasResponse">
+    <wsdl:part name="parameters" element="tns:listarSombrinhasResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Services">
+    <wsdl:operation name="reservarSombrinha">
+      <wsdl:input name="reservarSombrinha" message="tns:reservarSombrinha">
     </wsdl:input>
-      <wsdl:output name="SendDataResponse" message="tns:SendDataResponse">
+      <wsdl:output name="reservarSombrinhaResponse" message="tns:reservarSombrinhaResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBeachServices">
-      <wsdl:input name="GetBeachServices" message="tns:GetBeachServices">
+    <wsdl:operation name="cancelarSombrinha">
+      <wsdl:input name="cancelarSombrinha" message="tns:cancelarSombrinha">
     </wsdl:input>
-      <wsdl:output name="GetBeachServicesResponse" message="tns:GetBeachServicesResponse">
+      <wsdl:output name="cancelarSombrinhaResponse" message="tns:cancelarSombrinhaResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReserveShadow">
-      <wsdl:input name="ReserveShadow" message="tns:ReserveShadow">
+    <wsdl:operation name="listarSombrinhas">
+      <wsdl:input name="listarSombrinhas" message="tns:listarSombrinhas">
     </wsdl:input>
-      <wsdl:output name="ReserveShadowResponse" message="tns:ReserveShadowResponse">
+      <wsdl:output name="listarSombrinhasResponse" message="tns:listarSombrinhasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarReservas">
+      <wsdl:input name="listarReservas" message="tns:listarReservas">
+    </wsdl:input>
+      <wsdl:output name="listarReservasResponse" message="tns:listarReservasResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="SoapServicesImpServiceSoapBinding" type="tns:SoapServices">
+  <wsdl:binding name="SoapServicesImpServiceSoapBinding" type="tns:Services">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="SendData">
+    <wsdl:operation name="reservarSombrinha">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="SendData">
+      <wsdl:input name="reservarSombrinha">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="SendDataResponse">
+      <wsdl:output name="reservarSombrinhaResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBeachServices">
+    <wsdl:operation name="cancelarSombrinha">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="GetBeachServices">
+      <wsdl:input name="cancelarSombrinha">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="GetBeachServicesResponse">
+      <wsdl:output name="cancelarSombrinhaResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ReserveShadow">
+    <wsdl:operation name="listarSombrinhas">
       <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="ReserveShadow">
+      <wsdl:input name="listarSombrinhas">
         <soap:body use="literal"/>
       </wsdl:input>
-      <wsdl:output name="ReserveShadowResponse">
+      <wsdl:output name="listarSombrinhasResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarReservas">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listarReservas">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listarReservasResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="SoapServicesImpService">
     <wsdl:port name="SoapServicesImpPort" binding="tns:SoapServicesImpServiceSoapBinding">
-      <soap:address location="http://localhost:8080/CD_Project/services"/>
+      <soap:address location="http://localhost:8080/CD_Project/SoapServicesImpPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

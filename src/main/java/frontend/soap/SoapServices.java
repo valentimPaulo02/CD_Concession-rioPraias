@@ -1,5 +1,5 @@
 package frontend.soap;
-import frontend.objects.*;
+import objects.*;
 
 
 import javax.jws.WebService;
@@ -12,7 +12,7 @@ public interface SoapServices {
 		//LISTAR SOMBRINHAS
 		ArrayList<Service> listarSombrinhas(Booking booking);
 		//RESERVAR SOMBRINHAS
-		int reservarSombrinha(Booking content);
+		String reservarSombrinha(Booking content);
 		//CANCELAR SOMBRINHA
 		String cancelarSombrinha(Booking booking);
 		//LISTAR RESERVAS

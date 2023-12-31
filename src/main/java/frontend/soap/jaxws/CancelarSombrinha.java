@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlType;
 public class CancelarSombrinha {
 
     @XmlElement(name = "arg0")
-    private frontend.objects.Booking arg0;
+    private objects.Booking arg0;
 
-    public frontend.objects.Booking getArg0() {
+    public objects.Booking getArg0() {
         return this.arg0;
     }
 
-    public void setArg0(frontend.objects.Booking newArg0)  {
+    public void setArg0(objects.Booking newArg0)  {
         this.arg0 = newArg0;
     }
 

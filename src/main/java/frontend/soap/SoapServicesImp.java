@@ -1,6 +1,9 @@
 package frontend.soap;
 
-import frontend.objects.*;
+
+import frontend.ClientRMI;
+
+import objects.*;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
@@ -8,9 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebService(targetNamespace = "http://soap.frontend/", endpointInterface = "frontend.soap.SoapServices", portName = "SoapServicesImpPort", serviceName = "SoapServicesImpService")
-@Service
 
+@WebService(targetNamespace = "http://soap.frontend/", endpointInterface = "frontend.soap.SoapServices", portName = "SoapServicesImpPort", serviceName = "SoapServicesImpService")
 public class SoapServicesImp implements SoapServices{
 
     public SoapServicesImp() {
@@ -19,7 +21,7 @@ public class SoapServicesImp implements SoapServices{
     @Override
 	public String cancelarSombrinha(Booking booking) {
 		
-		SoapClient client = new SoapClient();
+		ClientRMI client = new ClientRMI();
 		
 		int result = client.cancelarSombrinha(booking.getId());
 		
@@ -32,30 +34,30 @@ public class SoapServicesImp implements SoapServices{
 
 
     @Override
-    public ArrayList<Service> listarSombrinhas(Booking booking){
+    public ArrayList<objects.Service> listarSombrinhas(Booking booking){
 		
-        SoapClient soap = new SoapClient();
+        ClientRMI rmi = new ClientRMI();
         
-        return soap.listarSombrinhas(booking);
+        return rmi.listarSombrinhas(booking);
         
     }
 
     @Override
-	public int reservarSombrinha(Booking content) {	
+	public String reservarSombrinha(Booking booking) {	
 		
     	
-		SoapClient soap = new SoapClient();
+		ClientRMI rmi = new ClientRMI();
 		
 		
-		return soap.reservarSombrinha(content);
+		return "" + rmi.reservarSombrinha(booking);
 		
 	}
     
     @Override
     public ArrayList<Booking> listarReservas(User user){
-		SoapClient soap = new SoapClient();
+		ClientRMI rmi = new ClientRMI();
 		//return rmi.listarReservas(user.getId());
-		return soap.listarReservas(1);
+		return rmi.listarReservas(user.getId());
 		
 	}
 }

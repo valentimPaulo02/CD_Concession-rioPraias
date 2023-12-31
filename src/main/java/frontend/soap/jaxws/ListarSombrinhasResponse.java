@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlType;
 public class ListarSombrinhasResponse {
 
     @XmlElement(name = "return")
-    private java.util.ArrayList<frontend.objects.Service> _return;
+    private java.util.ArrayList<objects.Service> _return;
 
-    public java.util.ArrayList<frontend.objects.Service> getReturn() {
+    public java.util.ArrayList<objects.Service> getReturn() {
         return this._return;
     }
 
-    public void setReturn(java.util.ArrayList<frontend.objects.Service> new_return)  {
+    public void setReturn(java.util.ArrayList<objects.Service> new_return)  {
         this._return = new_return;
     }
 

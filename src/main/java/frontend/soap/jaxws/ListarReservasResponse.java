@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlType;
 public class ListarReservasResponse {
 
     @XmlElement(name = "return")
-    private java.util.ArrayList<frontend.objects.Booking> _return;
+    private java.util.ArrayList<objects.Booking> _return;
 
-    public java.util.ArrayList<frontend.objects.Booking> getReturn() {
+    public java.util.ArrayList<objects.Booking> getReturn() {
         return this._return;
     }
 
-    public void setReturn(java.util.ArrayList<frontend.objects.Booking> new_return)  {
+    public void setReturn(java.util.ArrayList<objects.Booking> new_return)  {
         this._return = new_return;
     }
 

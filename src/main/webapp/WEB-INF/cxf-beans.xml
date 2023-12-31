@@ -14,4 +14,14 @@
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>
 	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://soap.frontend/"
+		id="soapservicesimp" implementor="frontend.soap.SoapServicesImp"
+		wsdlLocation="wsdl/soapservicesimp.wsdl"
+		endpointName="tns:SoapServicesImpPort"
+		serviceName="tns:SoapServicesImpService"
+		address="/SoapServicesImpPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
 </beans>
