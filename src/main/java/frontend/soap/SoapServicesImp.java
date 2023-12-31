@@ -13,28 +13,49 @@ import java.util.List;
 
 public class SoapServicesImp implements SoapServices{
 
-    private List<BeachService> beachServices = new ArrayList<>();
-
     public SoapServicesImp() {
-        // Inicialização de serviços de praia (simulados)
-        beachServices.add(new BeachService("A1", 'A', 2));
-        beachServices.add(new BeachService("A2", 'A', 2));
-        // Adicione mais serviços de praia conforme necessário
     }
 
     @Override
-	public ReturnBeachService GetBeachServices() {
-        return new ReturnBeachService("OK", beachServices);
+	public String cancelarSombrinha(Booking booking) {
+		
+		SoapClient client = new SoapClient();
+		
+		int result = client.cancelarSombrinha(booking.getId());
+		
+		if(result == -1) {
+			return "ERROR;";
+		}
+		
+		return "Success";
+	}
+
+
+    @Override
+    public ArrayList<Service> listarSombrinhas(Booking booking){
+		
+        SoapClient soap = new SoapClient();
+        
+        return soap.listarSombrinhas(booking);
+        
     }
 
     @Override
-	public Message ReserveShadow(Message message) {
-        return new Message("OK", "Reserva efetuada com sucesso.");
-    }
-
+	public int reservarSombrinha(Booking content) {	
+		
+    	
+		SoapClient soap = new SoapClient();
+		
+		
+		return soap.reservarSombrinha(content);
+		
+	}
+    
     @Override
-	public Message SendData(Message message) {
-        System.out.println("Dados recebidos: " + message.getContent());
-        return new Message("OK", "Dados recebidos com sucesso.");
-    }
+    public ArrayList<Booking> listarReservas(User user){
+		SoapClient soap = new SoapClient();
+		//return rmi.listarReservas(user.getId());
+		return soap.listarReservas(1);
+		
+	}
 }

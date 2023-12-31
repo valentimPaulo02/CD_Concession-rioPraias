@@ -13,22 +13,21 @@ import javax.xml.bind.annotation.XmlType;
  * Generated source version: 3.6.2
  */
 
-@XmlRootElement(name = "ReserveShadow", namespace = "http://soap.frontend/")
+@XmlRootElement(name = "reservarSombrinha", namespace = "http://soap.frontend/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ReserveShadow", namespace = "http://soap.frontend/")
+@XmlType(name = "reservarSombrinha", namespace = "http://soap.frontend/")
 
-public class ReserveShadow {
+public class ReservarSombrinha {
 
     @XmlElement(name = "arg0")
-    private frontend.objects.Message arg0;
+    private frontend.objects.Booking arg0;
 
-    public frontend.objects.Message getArg0() {
+    public frontend.objects.Booking getArg0() {
         return this.arg0;
     }
 
-    public void setArg0(frontend.objects.Message newArg0)  {
+    public void setArg0(frontend.objects.Booking newArg0)  {
         this.arg0 = newArg0;
     }
 
 }
-
