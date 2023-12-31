@@ -16,7 +16,7 @@ public class ClientRMI {
 	public int reservarSombrinha(Booking booking) {
 		try {
     	
-	      Registry registry = LocateRegistry.getRegistry("192.168.139.128");
+	      Registry registry = LocateRegistry.getRegistry("192.168.111.129");
 	      ServerInterface ServerIntf = (ServerInterface)registry.lookup("ServerFunctions");
 	   
 	      //retorna o numero de lugares do serviço escolhido
@@ -38,7 +38,7 @@ public class ClientRMI {
 	public int cancelarSombrinha(int bookingId) {
 		try {
 	    	
-		      Registry registry = LocateRegistry.getRegistry("192.168.139.128");
+		      Registry registry = LocateRegistry.getRegistry("192.168.111.129");
 		      ServerInterface ServerIntf = (ServerInterface)registry.lookup("ServerFunctions");
 		   
 		      //retorna o numero de linhas afetadas, deverias ser sempre 1
@@ -53,7 +53,7 @@ public class ClientRMI {
 	public ArrayList<Service> listarSombrinhas(Booking booking){
 		try {
 	    	
-		      Registry registry = LocateRegistry.getRegistry("192.168.139.128");
+		      Registry registry = LocateRegistry.getRegistry("192.168.111.129");
 		      ServerInterface ServerIntf = (ServerInterface)registry.lookup("ServerFunctions");
 		   
 		      //retorna uma lista com os serviços disponiveis
@@ -73,7 +73,7 @@ public class ClientRMI {
 	public ArrayList<Booking> listarReservas (int userId){
 		try {
 	    	
-		      Registry registry = LocateRegistry.getRegistry("192.168.139.128");
+		      Registry registry = LocateRegistry.getRegistry("192.168.111.129");
 		      ServerInterface ServerIntf = (ServerInterface)registry.lookup("ServerFunctions");
 		   
 		      //retorna uma lista com as reservas do utilizador

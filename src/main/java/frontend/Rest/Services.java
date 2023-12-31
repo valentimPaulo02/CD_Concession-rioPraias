@@ -13,7 +13,7 @@ public interface Services {
 	//LISTAR_SOMBRINHAS
 	ArrayList<Service> listarSombrinhas(Booking booking);
 	//RESERVAR_SOMBRINHA
-	int reservarSombrinha(Booking content);
+	String reservarSombrinha(Booking booking);
 	//CANCELAR_SOMBRINHA
 	String cancelarSombrinha(Booking booking);
 	

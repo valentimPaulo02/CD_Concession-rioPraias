@@ -44,7 +44,6 @@ public class ServicesImp implements Services {
     public ArrayList<Service> listarSombrinhas(Booking booking){
 		
         ClientRMI rmi = new ClientRMI();
-        
         return rmi.listarSombrinhas(booking);
         
     }
@@ -52,13 +51,10 @@ public class ServicesImp implements Services {
 
 	@POST
 	@Path("/RESERVAR_SOMBRINHA")
-	public int reservarSombrinha(Booking content) {	
+	public String reservarSombrinha(Booking booking) {	
 		
-	
 		ClientRMI rmi = new ClientRMI();
-		
-		
-		return rmi.reservarSombrinha(content);
+		return "" + rmi.reservarSombrinha(booking);
 		
 	}
 
@@ -66,9 +62,10 @@ public class ServicesImp implements Services {
 	@POST
 	@Path("/LISTAR_RESERVAS")
 	public ArrayList<Booking> listarReservas(User user){
+		
 		ClientRMI rmi = new ClientRMI();
 		//return rmi.listarReservas(user.getId());
-		return rmi.listarReservas(1);
+		return rmi.listarReservas(user.getId());
 		
 	}
 	

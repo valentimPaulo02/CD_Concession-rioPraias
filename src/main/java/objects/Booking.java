@@ -105,9 +105,9 @@ public class Booking implements Serializable{
 		this.EndingTime = EndingTime;
 	}
 	
-/*	public String BookingToString() {
+	public String toString() {
 		return "BookingId: "+Id+" | ServiceId: "+ServiceId+" | Date: "+Date+" | StartTime: "+StartTime+" | EndingTime: "+EndingTime;
 	}
-	*/
+	
 
 }
