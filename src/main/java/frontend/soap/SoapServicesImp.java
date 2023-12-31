@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 @WebService(targetNamespace = "http://soap.frontend/", endpointInterface = "frontend.soap.SoapServices", portName = "SoapServicesImpPort", serviceName = "SoapServicesImpService")
 public class SoapServicesImp implements SoapServices{
 

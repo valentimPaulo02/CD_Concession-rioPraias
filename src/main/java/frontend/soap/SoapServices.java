@@ -6,7 +6,8 @@ import javax.jws.WebService;
 
 import java.util.ArrayList;
 
-@WebService(name = "Services", targetNamespace = "http://soap.frontend/")
+
+@WebService(name = "SoapServices", targetNamespace = "http://soap.frontend/")
 public interface SoapServices {
 	
 		//LISTAR SOMBRINHAS
