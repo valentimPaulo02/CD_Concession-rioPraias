@@ -33,7 +33,7 @@ public class ServicesImp implements Services {
 			return "ERROR;";
 		}
 		
-		return "Success";
+		return "A sua reserva foi cancelada com sucesso.";
 	}
 
 	
