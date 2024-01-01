@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Booking")
 public class Booking implements Serializable{
 	
+	private static final long serialVersionUID = 861072986040056973L;
+	
 	private int Id;
 	private int UserId;
 	private String ServiceId;
