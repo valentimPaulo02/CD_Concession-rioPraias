@@ -1,73 +1,71 @@
-<xs:schema xmlns:tns="http://soap.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://soap.frontend/" version="1.0">
-
-  <xs:element name="GetBeachServices" type="tns:GetBeachServices"/>
-
-  <xs:element name="GetBeachServicesResponse" type="tns:GetBeachServicesResponse"/>
-
-  <xs:element name="Message" type="tns:message"/>
-
-  <xs:element name="ReserveShadow" type="tns:ReserveShadow"/>
-
+<xs:schema xmlns:tns="http://soap.frontend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.frontend/" version="1.0">
+  <xs:element name="Booking" type="tns:booking"/>
   <xs:element name="ReserveShadowResponse" type="tns:ReserveShadowResponse"/>
-
-  <xs:element name="SendData" type="tns:SendData"/>
-
-  <xs:element name="SendDataResponse" type="tns:SendDataResponse"/>
-
-  <xs:complexType name="SendData">
+  <xs:element name="Service" type="tns:service"/>
+  <xs:element name="cancelarSombrinha" type="tns:cancelarSombrinha"/>
+  <xs:element name="cancelarSombrinhaResponse" type="tns:CancelarSombrinhaResponse"/>
+  <xs:element name="listarReservas" type="tns:listarReservas"/>
+  <xs:element name="listarReservasResponse" type="tns:listarReservasResponse"/>
+  <xs:element name="listarSombrinhas" type="tns:listarSombrinhas"/>
+  <xs:element name="listarSombrinhasResponse" type="tns:listarSombrinhasResponse"/>
+  <xs:element name="reservarSombrinha" type="tns:reservarSombrinha"/>
+  <xs:complexType name="reservarSombrinha">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="message">
+  <xs:complexType name="booking">
     <xs:sequence>
-      <xs:element minOccurs="0" name="content" type="xs:string"/>
-      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+      <xs:element minOccurs="0" name="beachId" type="xs:string"/>
+      <xs:element minOccurs="0" name="date" type="xs:string"/>
+      <xs:element name="endingTime" type="xs:int"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="serviceId" type="xs:string"/>
+      <xs:element name="startTime" type="xs:int"/>
+      <xs:element name="userId" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="SendDataResponse">
+  <xs:complexType name="ReserveShadowResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cancelarSombrinha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CancelarSombrinhaResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="GetBeachServices">
-    <xs:sequence/>
-  </xs:complexType>
-
-  <xs:complexType name="GetBeachServicesResponse">
+  <xs:complexType name="listarSombrinhas">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:returnBeachService"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="returnBeachService">
+  <xs:complexType name="listarSombrinhasResponse">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="beachServices" nillable="true" type="tns:beachService"/>
-      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:service"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="beachService">
+  <xs:complexType name="service">
     <xs:sequence>
-      <xs:element name="beachId" type="xs:unsignedShort"/>
+      <xs:element minOccurs="0" name="beachId" type="xs:string"/>
       <xs:element minOccurs="0" name="id" type="xs:string"/>
       <xs:element name="nbrOfSeats" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="ReserveShadow">
+  <xs:complexType name="listarReservas">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:message"/>
+      <xs:element name="arg0" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:complexType name="ReserveShadowResponse">
+  <xs:complexType name="listarReservasResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:message"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:booking"/>
     </xs:sequence>
   </xs:complexType>
-
+  <xs:element name="reservarSombrinhaResponse" nillable="true" type="tns:ReserveShadowResponse"/>
 </xs:schema>

@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>WEB-INF/cxf.xml</param-value>
+	<param-value>WEB-INF/cxf-beans.xml,WEB-INF/cxf.xml</param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
