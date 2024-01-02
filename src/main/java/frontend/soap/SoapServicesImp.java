@@ -34,7 +34,7 @@ public class SoapServicesImp implements SoapServices{
 		if(result == -1) {
 			return "ERROR;";
 		}
-		return "Success";
+		return "A sua reserva foi cancelada com sucesso.";
 	}
 
 
@@ -51,9 +51,9 @@ public class SoapServicesImp implements SoapServices{
 	}
     
     @Override
-    public ArrayList<Booking> listarReservas(User user){
+    public ArrayList<Booking> listarReservas(int userId){
 		ClientRMI rmi = new ClientRMI();
-		return rmi.listarReservas(user.getId());	
+		return rmi.listarReservas(userId);	
 	}
     
     

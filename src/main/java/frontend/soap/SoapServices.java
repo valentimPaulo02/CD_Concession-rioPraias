@@ -13,11 +13,11 @@ public interface SoapServices {
 		//LISTAR SOMBRINHAS
 		ArrayList<Service> listarSombrinhas(Booking booking);
 		//RESERVAR SOMBRINHAS
-		String reservarSombrinha(Booking content);
+		String reservarSombrinha(Booking booking);
 		//CANCELAR SOMBRINHA
 		String cancelarSombrinha(Booking booking);
 		//LISTAR RESERVAS
-		ArrayList<Booking> listarReservas(User user);
+		ArrayList<Booking> listarReservas(int userId);
 		//REGISTAR_UTILIZADOR
 		String registarUtilizador(User user);
 		//LOGIN
