@@ -16,12 +16,10 @@ public interface Services {
 	String reservarSombrinha(Booking booking);
 	//CANCELAR_SOMBRINHA
 	String cancelarSombrinha(Booking booking);
-	
 	//LISTAR RESERVAS
 	ArrayList<Booking> listarReservas(User user);
-	
-	
-	
-	//Message SendData(Message message);
-	
+	//REGISTAR_UTILIZADOR
+	String registarUtilizador(User user);
+	//LOGIN
+	String login(User user);
 }

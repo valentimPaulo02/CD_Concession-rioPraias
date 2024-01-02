@@ -1,2 +1,6 @@
 /frontend/
-/objects/
+/Interface.class
+/InterfaceRest.class
+/InterfaceSoapHelper.class
+/InterfaceRestHelper.class
+/client/

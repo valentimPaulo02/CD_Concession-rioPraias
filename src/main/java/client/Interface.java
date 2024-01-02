@@ -1,4 +1,4 @@
-package frontend;
+package client;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -20,7 +20,7 @@ public class Interface {
 	
 	// for rest and soap work
 	private static boolean isRest = true;
-	private static int userId = 69;
+	private static int userId = -1;
 	
 	// for static work
 	private static int turn=1;
@@ -33,9 +33,14 @@ public class Interface {
 		
 		while(running) {
 			if(turn!=1) {
-				for (int i = 0; i < 10; i++) {
-		            System.out.println();
+				//separate
+				System.out.println();
+				for (int i = 0; i < 70; i++) {
+		            System.out.print("-");
 		        }
+				System.out.print("\n");
+				System.out.println();
+				//separate
 			}
 			else {
 				turn++;
@@ -56,12 +61,12 @@ public class Interface {
 				
 				switch(input) {
 					case "1":
-						System.out.println("Going for login");
+						login();
 						menuInput = false;
 						loggedIn= true;
 						break;
 					case "2":
-						System.out.println("Going for register");
+						registarUtilizador();
 						menuInput = false;
 						break;
 					case "x":
@@ -75,9 +80,14 @@ public class Interface {
 			}
 			
 			while(loggedIn) {
-				for (int i = 0; i < 10; i++) {
-		            System.out.println();
+				//separate
+				System.out.println();
+				for (int i = 0; i < 70; i++) {
+		            System.out.print("-");
 		        }
+				System.out.print("\n");
+				System.out.println();
+				//separate
 				
 				System.out.println("Bem-vindo, aqui está a lista de funcionalidades.");
 				System.out.println("1. Listar Sombrinhas");
@@ -120,6 +130,7 @@ public class Interface {
 		}	
 	}
 	
+	
 	//missing SOAP implementation
 	private static void listarSombrinhas() throws JSONException {
 		String beachId = "";
@@ -134,9 +145,15 @@ public class Interface {
 		boolean endingTimeInput = true;
 		//variables
 		
-		for (int i = 0; i < 10; i++) {
-            System.out.println();
+		//separate
+		System.out.println();
+		for (int i = 0; i < 70; i++) {
+            System.out.print("-");
         }
+		System.out.print("\n");
+		System.out.println();
+		//separate
+		
 		System.out.println("Notas Listar_Sombrinhas:");
 		System.out.println("- Esta função vai listar todas as sombrinhas disponíveis na praia, na data e hora introduzida");
 		System.out.println("- As reservas começam as 8:00 e terminam as 20:00 por períodos de 1 hora");
@@ -189,59 +206,9 @@ public class Interface {
 		System.out.println();
 		System.out.println("Aqui está a lista de sombrinhas disponíveis para os dados introduzidos:");
 		
-		
 		if(isRest) {
-			
-			try {
-				URL url = new URL("http://localhost:8080/CD_Project/rest/LISTAR_SOMBRINHAS");
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setDoOutput(true);
-				conn.setRequestMethod("POST");
-				conn.setRequestProperty("Content-Type", "application/json");
-	
-				String input = "{\"Booking\":{"
-						+ "\"beachId\":\""+beachId+"\","
-						+ "\"date\":\""+date+"\","
-						+ "\"startTime\":\""+startTime+"\","
-						+ "\"endingTime\":\""+endingTime+"\""
-						+ "}}";
-	
-				OutputStream os = conn.getOutputStream();
-				os.write(input.getBytes());
-				os.flush();
-	
-				Scanner scanner;
-			    if (conn.getResponseCode() != 200) {
-			    	  scanner = new Scanner(conn.getErrorStream());
-			    } else {
-			    	  scanner = new Scanner(conn.getInputStream());
-			    }
-		      	scanner.useDelimiter("\\Z");
-		      	
-		      	String jsonResponse = scanner.next();
-		      	JSONObject jsonObject = new JSONObject(jsonResponse);
-		        JSONArray serviceArray = jsonObject.getJSONArray("Service");
-
-		        // Iterate through the array and print the information
-		        for (int i = 0; i < serviceArray.length(); i++) {
-		            JSONObject service = serviceArray.getJSONObject(i);
-		            String id = service.getString("id");
-		            int nbrOfSeats = service.getInt("nbrOfSeats");
-		            
-		            System.out.println("Id da Sombrinha: "+id+" | Lugares: "+nbrOfSeats);
-		        }
-		      	
-		      	scanner.close();
-		      	conn.disconnect();
-		      
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+			InterfaceRestHelper.listarSombrinhas(beachId, startTime, endingTime, date);
 			scanner.nextLine();
-			
 		}else {
 			//SOAP IMPLEMENTATION
 		}
@@ -269,9 +236,15 @@ public class Interface {
 		boolean serviceInput = true;
 		//variables
 		
-		for (int i = 0; i < 10; i++) {
-            System.out.println();
+		//separate
+		System.out.println();
+		for (int i = 0; i < 70; i++) {
+            System.out.print("-");
         }
+		System.out.print("\n");
+		System.out.println();
+		//separate
+		
 		System.out.println("Notas Reservar_Sombrinha:");
 		System.out.println("- Esta função vai listar todas as sombrinhas disponíveis na praia, na data e hora introduzida");
 		System.out.println("- Depois de listar vai perdir o número de pessoas para a reserva e vai permitir o utilizador reservar várias"
@@ -342,57 +315,7 @@ public class Interface {
 		
 		if(isRest) {
 			
-			ArrayList<String> serviceIds = new ArrayList<>();
-			
-			try {
-				URL url = new URL("http://localhost:8080/CD_Project/rest/LISTAR_SOMBRINHAS");
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setDoOutput(true);
-				conn.setRequestMethod("POST");
-				conn.setRequestProperty("Content-Type", "application/json");
-	
-				String input = "{\"Booking\":{"
-						+ "\"beachId\":\""+beachId+"\","
-						+ "\"date\":\""+date+"\","
-						+ "\"startTime\":\""+startTime+"\","
-						+ "\"endingTime\":\""+endingTime+"\""
-						+ "}}";
-	
-				OutputStream os = conn.getOutputStream();
-				os.write(input.getBytes());
-				os.flush();
-	
-				Scanner scanner;
-			    if (conn.getResponseCode() != 200) {
-			    	  scanner = new Scanner(conn.getErrorStream());
-			    } else {
-			    	  scanner = new Scanner(conn.getInputStream());
-			    }
-		      	scanner.useDelimiter("\\Z");
-		      	
-		      	String jsonResponse = scanner.next();
-		      	JSONObject jsonObject = new JSONObject(jsonResponse);
-		        JSONArray serviceArray = jsonObject.getJSONArray("Service");
-
-		        // Iterate through the array and print the information
-		        for (int i = 0; i < serviceArray.length(); i++) {
-		            JSONObject object = serviceArray.getJSONObject(i);
-		            String id = object.getString("id");
-		            int nbrOfSeats = object.getInt("nbrOfSeats");
-		            
-		            System.out.println("Id da Sombrinha: "+id+" | Lugares: "+nbrOfSeats);
-		            serviceIds.add(id);
-		        }
-		      	
-		      	scanner.close();
-		      	conn.disconnect();
-		      
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+			ArrayList<String> serviceIds = InterfaceRestHelper.listarSombrinhas(beachId, startTime, endingTime, date);
 			scanner.nextLine();
 			System.out.println();
 			
@@ -409,45 +332,7 @@ public class Interface {
 						System.out.println("Opção inválida");
 					}else {
 						
-						try {
-							URL url = new URL("http://localhost:8080/CD_Project/rest/RESERVAR_SOMBRINHA");
-							HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-							conn.setDoOutput(true);
-							conn.setRequestMethod("POST");
-							conn.setRequestProperty("Content-Type", "application/json");
-				
-							String input = "{\"Booking\":{"
-									+ "\"beachId\":\""+beachId+"\","
-									+ "\"date\":\""+date+"\","
-									+ "\"startTime\":\""+startTime+"\","
-									+ "\"userId\":\""+userId+"\","
-									+ "\"endingTime\":\""+endingTime+"\","
-									+ "\"serviceId\":\""+service+"\""
-									+ "}}";
-				
-							OutputStream os = conn.getOutputStream();
-							os.write(input.getBytes());
-							os.flush();
-				
-							Scanner scanner;
-						    if (conn.getResponseCode() != 200) {
-						    	  scanner = new Scanner(conn.getErrorStream());
-						    } else {
-						    	  scanner = new Scanner(conn.getInputStream());
-						    }
-					      	scanner.useDelimiter("\\Z");
-					      	
-					      	nbrOfPeople -= Integer.parseInt(scanner.next());
-					      	
-					      	scanner.close();
-					      	conn.disconnect();
-					      
-						} catch (MalformedURLException e) {
-							e.printStackTrace();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						
+						nbrOfPeople -= InterfaceRestHelper.reservarSombrinhas(beachId, startTime, endingTime, date, userId, service);
 						serviceInput = false;
 						
 						if(nbrOfPeople > 0) {
@@ -467,15 +352,18 @@ public class Interface {
 	
 	private static void cancelarSombrinha() throws JSONException {
 		
-		ArrayList<Integer> bookingIds = new ArrayList<>();
-		
 		int bookingId = 0;
 		boolean bookingIdInput = true;
 		//variables
 		
-		for (int i = 0; i < 10; i++) {
-            System.out.println();
+		//separate
+		System.out.println();
+		for (int i = 0; i < 70; i++) {
+            System.out.print("-");
         }
+		System.out.print("\n");
+		System.out.println();
+		//separate
 		
 		System.out.println("Notas Cancelar_Sombrinha:");
 		System.out.println("- Esta função vai listar todas as reservas feitas pelo utilizador");
@@ -485,107 +373,140 @@ public class Interface {
 		System.out.println("Aqui está a sua lista de reservas:");
 		
 		if(isRest) {
+			ArrayList<Integer> bookingIds = InterfaceRestHelper.listarReservas(userId);
 			
-			try {
-				URL url = new URL("http://localhost:8080/CD_Project/rest/LISTAR_RESERVAS");
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setDoOutput(true);
-				conn.setRequestMethod("POST");
-				conn.setRequestProperty("Content-Type", "application/json");
-	
-				String input = "{\"User\":{"
-						+ "\"id\":\""+userId+"\""
-						+ "}}";
-	
-				OutputStream os = conn.getOutputStream();
-				os.write(input.getBytes());
-				os.flush();
-	
-				Scanner scanner;
-			    if (conn.getResponseCode() != 200) {
-			    	  scanner = new Scanner(conn.getErrorStream());
-			    } else {
-			    	  scanner = new Scanner(conn.getInputStream());
-			    }
-		      	scanner.useDelimiter("\\Z");
-		      	
-		      	String jsonResponse = scanner.next();
-		      	JSONObject jsonObject = new JSONObject(jsonResponse);
-		        JSONArray serviceBooking = jsonObject.getJSONArray("Booking");
-
-		        // Iterate through the array and print the information
-		        for (int i = 0; i < serviceBooking.length(); i++) {
-		            JSONObject booking = serviceBooking.getJSONObject(i);
-		            int id = booking.getInt("id");
-		            int startTime = booking.getInt("startTime");
-		            int endingTime = booking.getInt("endingTime");
-		            String date = booking.getString("date");
-		            String serviceId = booking.getString("serviceId");
-		            
-		            System.out.println("Id da Reserva: "+id+" | Id da Sombrinha: "+serviceId+" | "+date+" das "+startTime+" às "+endingTime);
-		            bookingIds.add(id);
-		        }
-		      	
-		      	scanner.close();
-		      	conn.disconnect();
-		      
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			System.out.println();
-			System.out.println("Inisira o id da reserva que pretende cancelar:");
-			
-			while(bookingIdInput) {
-				System.out.print("-> ");
-				bookingId = scanner.nextInt();
+			if(bookingIds.size()==0) {
+				System.out.println();
+				System.out.println("Voce não tem reservas.");
+				bookingIdInput = false;
+			}else {
+				System.out.println();
+				System.out.println("Inisira o id da reserva que pretende cancelar:");
 				
-				if(!bookingIds.contains(bookingId)) {
-					System.out.println("Opção inválida");
-				}else {
-					try {
-						URL url = new URL("http://localhost:8080/CD_Project/rest/CANCELAR_SOMBRINHA");
-						HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-						conn.setDoOutput(true);
-						conn.setRequestMethod("POST");
-						conn.setRequestProperty("Content-Type", "application/json");
-			
-						String input = "{\"Booking\":{"
-								+ "\"id\":\""+bookingId+"\""
-								+ "}}";
-			
-						OutputStream os = conn.getOutputStream();
-						os.write(input.getBytes());
-						os.flush();
-			
-						Scanner scanner;
-					    if (conn.getResponseCode() != 200) {
-					    	  scanner = new Scanner(conn.getErrorStream());
-					    } else {
-					    	  scanner = new Scanner(conn.getInputStream());
-					    }
-				      	scanner.useDelimiter("\\Z");
-				      	
-				      	System.out.println(scanner.next());
-				      	
-				      	scanner.close();
-				      	conn.disconnect();
-				      
-					} catch (MalformedURLException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+				while(bookingIdInput) {
+					System.out.print("-> ");
+					bookingId = scanner.nextInt();
 					
-					scanner.nextLine();
-					bookingIdInput = false;
+					if(!bookingIds.contains(bookingId)) {
+						System.out.println("Opção inválida");
+					}else {
+						InterfaceRestHelper.cancerlarReserva(bookingId);
+						
+						scanner.nextLine();
+						bookingIdInput = false;
+					}
 				}
 			}
 			
 		}else {
 			//SOAP IMPLEMENTATION
+		}
+	}
+	
+	private static void login() throws JSONException {
+		
+		String username = "";
+		String password = "";
+		boolean loggingIn = true;
+		
+		//separate
+		System.out.println();
+		for (int i = 0; i < 70; i++) {
+            System.out.print("-");
+        }
+		System.out.print("\n");
+		System.out.println();
+		//separate
+		
+		System.out.println("Notas Login:");
+		System.out.println("- Para efetuar o login não pode introduzir nos inputs");
+		System.out.println();
+		
+		while(loggingIn) {
+			System.out.println("Insira o username:");
+			System.out.print("-> ");
+			username = scanner.nextLine();
+			
+			System.out.println("Insira a password:");
+			System.out.print("-> ");
+			password = scanner.nextLine();
+			
+			if(isRest) {
+				int value = InterfaceRestHelper.login(username, password);				
+				
+				if(value>0) {
+					userId = value;
+					loggingIn = false;
+					
+					System.out.println("Login efetuado com sucesso");
+				}else {
+					System.out.println("Os dados introduzidos não são válidos");
+					System.out.println();
+				}
+				
+			}else {
+				//SOAP IMPLEMENTATION
+			}
+		}
+		
+	}
+	
+	private static void registarUtilizador() throws JSONException {
+		String username = "";
+		String password = "";
+		String repeatPassword = "";
+		boolean repeatPasswordInput = true;
+		boolean loggingIn = true;
+		
+		//separate
+		System.out.println();
+		for (int i = 0; i < 70; i++) {
+            System.out.print("-");
+        }
+		System.out.print("\n");
+		System.out.println();
+		//separate
+		
+		System.out.println("Notas Registar_Utilizador:");
+		System.out.println("- Para efetuar o registo não pode introduzir espaços nos inputs");
+		System.out.println("- Terá que inserir duas passwords identicas para ser possível realizar o registo");
+		System.out.println();
+		
+		while(loggingIn) {
+			System.out.println("Insira o username:");
+			System.out.print("-> ");
+			username = scanner.nextLine();
+			
+			System.out.println("Insira a password:");
+			System.out.print("-> ");
+			password = scanner.nextLine();
+			
+			System.out.println("Repita a password:");
+			while(repeatPasswordInput) {
+				System.out.print("-> ");
+				repeatPassword = scanner.nextLine();
+				
+				if(repeatPassword.equals(password)) {
+					repeatPasswordInput = false;
+				}else {
+					System.out.println("As passwords não correspondem. Insira novamente");
+				}
+			}
+			
+			if(isRest) {
+				boolean valid = InterfaceRestHelper.registarUtilizador(username, password);				
+				
+				if(valid) {
+					System.out.println("Utilizador registado com sucesso.");
+					loggingIn = false;
+				}else {
+					System.out.println("Os dados introduzidos não são válidos");
+					System.out.println();
+				}
+				
+			}else {
+				//SOAP IMPLEMENTATION
+			}
 		}
 	}
 	
@@ -598,21 +519,4 @@ public class Interface {
 	
 	
 	
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

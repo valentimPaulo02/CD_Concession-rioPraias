@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "User")
 public class User implements Serializable{
     private int id;
-    private String passwordHash;
+    private String username;
+    private String password;
 
     public User() {
     }
@@ -19,9 +20,9 @@ public class User implements Serializable{
     public User(int id) {
         this.id = id;
     }
-    public User(int id, String passwordHash) {
-        this.id = id;
-        this.passwordHash = passwordHash;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -31,12 +32,20 @@ public class User implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getPasswordHash() {
-        return passwordHash;
+    
+    public String getUsername() {
+    	return username;
+    }
+    
+    public void setUsername(String username) {
+    	this.username = username;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
