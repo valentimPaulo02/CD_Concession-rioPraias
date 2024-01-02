@@ -9,8 +9,8 @@ public class Database {
 	
     private Connection connection;
     private String jdbcUrl = "jdbc:mysql://aws.connect.psdb.cloud/cd_project?sslMode=VERIFY_IDENTITY";
-    private String username = "tdl1y6upwo3shau53djr";
-    private String password = "pscale_pw_DxyxF21qIQHDnDsgh3WtlLrrlHalUo1wPIVpJFHY802";
+    private String username = "8z0az3j6btzflkcf56ry";
+    private String password = "pscale_pw_PApNKZZC10EGj---------IhXlK7HIjevFSx8pzgNEcC7y2Zxyya";
 	// A PASSWORD É ESTA SEM OS TRAÇOS QUE ESTÃO NO INICIO FIM E MEIO
     
     public Database() {
