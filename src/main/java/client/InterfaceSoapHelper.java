@@ -70,12 +70,14 @@ public class InterfaceSoapHelper {
 		try {
 			ArrayList<Booking> bookings = soapHelper.listarReservas(userId);
 			
-			for(Booking booking : bookings) {
-				bookingIds.add(booking.getId());
-				
-				System.out.println("Id da Reserva: "+booking.getId()+
-						" | Id da Sombrinha: "+booking.getServiceId()+" | "+booking.getDate()+
-						" das "+booking.getStartTime()+" às "+booking.getEndingTime());
+			if(bookings != null) {
+				for(Booking booking : bookings) {
+					bookingIds.add(booking.getId());
+					
+					System.out.println("Id da Reserva: "+booking.getId()+
+							" | Id da Sombrinha: "+booking.getServiceId()+" | "+booking.getDate()+
+							" das "+booking.getStartTime()+" às "+booking.getEndingTime());
+				}
 			}
 		} catch (SecurityException e) {
 			e.printStackTrace();	

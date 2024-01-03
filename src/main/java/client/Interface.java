@@ -395,7 +395,7 @@ public class Interface {
 		
 		System.out.println("Notas Cancelar_Sombrinha:");
 		System.out.println("- Esta função vai listar todas as reservas feitas pelo utilizador");
-		System.out.println("- Depois de listar vai perdir o id da sombrinha, cujo o utilizador pretende cancelar");
+		System.out.println("- Depois de listar vai perdir o id da sombrinha, cuj2o o utilizador pretende cancelar");
 		System.out.println();
 		
 		System.out.println("Aqui está a sua lista de reservas:");
